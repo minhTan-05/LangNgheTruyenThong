@@ -1,0 +1,110 @@
+/* --- QUẢN LÝ HÌNH ẢNH CSS --- */
+.vi-main {
+  flex: 1;
+  padding: 2.5rem 3rem;
+  overflow-y: auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.vi-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.vi-title {
+  margin: 0 0 4px 0;
+  font-size: 1.5rem;
+  color: #374151;
+  font-weight: 700;
+}
+
+.vi-subtitle {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.vi-btn-add {
+  background: #b45309;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.vi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.vi-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+  border: 1px solid #f1f5f9;
+  position: relative;
+}
+
+.vi-img-wrapper {
+  height: 180px;
+  overflow: hidden;
+  position: relative;
+}
+
+.vi-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.vi-card:hover .vi-img-wrapper img {
+  transform: scale(1.05);
+}
+
+.vi-info {
+  padding: 1rem;
+}
+
+.vi-info h4 {
+  margin: 0 0 4px 0;
+  font-size: 0.95rem;
+  color: #1e293b;
+}
+
+.vi-info p {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #9ca3af;
+}
+
+.vi-delete-btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(239, 68, 68, 0.9);
+  color: white;
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+.vi-card:hover .vi-delete-btn {
+  opacity: 1;
+}

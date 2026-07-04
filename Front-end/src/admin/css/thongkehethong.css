@@ -1,0 +1,123 @@
+/* Layout chung kế thừa */
+.dash-wrapper {
+  display: flex; min-height: 100vh;
+  background-color: #f6f4ee; 
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.sys-stat-main {
+  flex: 1; padding: 2.5rem 3rem; overflow-y: auto; box-sizing: border-box;
+}
+
+/* HEADER */
+.sys-stat-header {
+  display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem;
+}
+.sys-stat-title { margin: 0 0 6px 0; font-size: 1.5rem; color: #374151; font-weight: 700; }
+.sys-stat-subtitle { margin: 0; font-size: 0.9rem; color: #9ca3af; }
+
+.sys-stat-actions { display: flex; align-items: center; gap: 1rem; }
+.sys-stat-time-filters {
+  display: flex; background: white; border-radius: 30px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.02); border: 1px solid #f3f4f6;
+}
+.sys-stat-time-btn {
+  background: none; border: none; padding: 8px 16px; font-size: 0.85rem; color: #6b7280; font-weight: 500; cursor: pointer; transition: 0.2s;
+}
+.sys-stat-time-btn.active { background: #b45309; color: white; }
+.sys-stat-btn-export {
+  display: flex; align-items: center; gap: 6px; background: white; border: 1px solid #f3f4f6; padding: 8px 16px; border-radius: 30px; font-size: 0.85rem; color: #374151; font-weight: 600; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+/* KPI CARDS */
+.sys-stat-kpi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+.sys-stat-kpi-card { background: white; border-radius: 16px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+.kpi-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1rem; }
+.kpi-label { font-size: 0.85rem; color: #9ca3af; font-weight: 500; }
+.kpi-icon-box { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.kpi-value { margin: 0 0 8px 0; font-size: 1.8rem; font-weight: 700; color: #1f2937; }
+.kpi-trend { margin: 0; font-size: 0.75rem; display: flex; align-items: center; gap: 4px; font-weight: 600; }
+
+/* COLORS */
+.bg-yellow-light { background: #fefce8; } .text-yellow { color: #cda846; } .bg-yellow { background: #cda846;}
+.bg-orange-light { background: #fff7ed; } .text-orange { color: #b45309; } .bg-orange { background: #b45309;}
+.bg-blue-light { background: #eff6ff; } .text-blue { color: #3b82f6; }
+.bg-green-light { background: #f0fdf4; } .text-green { color: #16a34a; }
+.bg-dark { background: #374151; } 
+
+/* CHARTS LAYOUT */
+.sys-stat-middle-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+.sys-stat-card { background: white; border-radius: 16px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+.sys-stat-full-width { margin-bottom: 2rem; }
+.sys-stat-card-header { display: flex; align-items: center; gap: 8px; margin-bottom: 2rem; }
+.sys-stat-card-header h3 { margin: 0; font-size: 1.1rem; color: #374151; font-weight: 700; }
+
+/* MOCK LINE CHARTS */
+.sys-mock-chart-container {
+  position: relative; height: 260px; width: 100%;
+  padding-bottom: 40px; padding-left: 55px; padding-right: 55px; box-sizing: border-box;
+}
+.sys-chart-grid-lines {
+  position: absolute; top: 0; left: 55px; right: 55px; bottom: 40px;
+  display: flex; flex-direction: column; justify-content: space-between; z-index: 1;
+}
+.sys-chart-grid-lines div { border-top: 1px dashed #e5e7eb; width: 100%; }
+.sys-chart-x-axis {
+  position: absolute; bottom: 15px; left: 55px; right: 55px;
+  display: flex; justify-content: space-between; font-size: 0.75rem; color: #9ca3af;
+}
+.sys-chart-y-axis-left {
+  position: absolute; top: 0; left: 0; bottom: 40px; width: 45px;
+  display: flex; flex-direction: column; justify-content: space-between; font-size: 0.7rem; color: #9ca3af; text-align: right;
+}
+.sys-chart-y-axis-right {
+  position: absolute; top: 0; right: 0; bottom: 40px; width: 45px;
+  display: flex; flex-direction: column; justify-content: space-between; font-size: 0.7rem; color: #9ca3af; text-align: left;
+}
+.sys-mock-line-chart {
+  position: absolute; top: 0; left: 55px; right: 55px; bottom: 40px;
+  width: calc(100% - 110px); height: calc(100% - 40px); z-index: 2; overflow: visible;
+}
+.sys-chart-legend {
+  position: absolute; bottom: -10px; left: 0; right: 0;
+  text-align: center; font-size: 0.8rem; color: #b45309; display: flex; justify-content: center; align-items: center; gap: 6px;
+}
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+
+/* MOCK DONUT CHART */
+.sys-mock-donut-container { display: flex; flex-direction: column; align-items: center; gap: 2.5rem; }
+.sys-donut-chart {
+  width: 170px; height: 170px; border-radius: 50%;
+  /* Conic gradient giả lập tỷ lệ phần trăm (98%, 1.5%, 0.5%) */
+  background: conic-gradient(#cda846 0% 85%, #b45309 85% 95%, #374151 95% 100%);
+  position: relative;
+}
+.sys-donut-chart::after {
+  content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 110px; height: 110px; background: white; border-radius: 50%;
+}
+.sys-donut-legend { list-style: none; padding: 0; margin: 0; width: 100%; display: flex; flex-direction: column; gap: 14px; }
+.sys-donut-legend li { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #4b5563; }
+.sys-donut-legend .legend-label { display: flex; align-items: center; gap: 8px;}
+.sys-donut-legend li strong { color: #1f2937; font-size: 0.95rem;}
+
+/* TABLE */
+.sys-stat-table-card { padding-bottom: 0; overflow: hidden; }
+.sys-stat-table { width: 100%; border-collapse: collapse; text-align: left; }
+.sys-stat-table th { background: #f9fafb; padding: 14px 1.5rem; font-size: 0.75rem; color: #6b7280; font-weight: 600; border-bottom: 1px solid #e5e7eb; }
+.sys-stat-table td { padding: 1.25rem 1.5rem; border-bottom: 1px solid #f3f4f6; font-size: 0.9rem; color: #374151; }
+.sys-stat-table tr:last-child td { border-bottom: none; }
+
+.rank-badge {
+  width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; font-weight: bold; color: white;
+}
+.rank-1 { background: #cda846; }
+.rank-2 { background: #b45309; }
+.rank-3 { background: #9ca3af; }
+.rank-4, .rank-5 { background: #e5e7eb; color: #9ca3af;}
+
+/* Progress Bar for ratio */
+.ratio-cell { display: flex; align-items: center; gap: 12px; }
+.ratio-bar-bg { flex: 1; height: 6px; background: #f3f4f6; border-radius: 3px; overflow: hidden; max-width: 100px;}
+.ratio-bar-fill { height: 100%; background: #cda846; border-radius: 3px; }
+.ratio-text { font-size: 0.8rem; color: #9ca3af; width: 35px; text-align: right;}

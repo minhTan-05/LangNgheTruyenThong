@@ -1,0 +1,70 @@
+/* Layout chung kế thừa */
+.dash-wrapper {
+  display: flex; min-height: 100vh;
+  background-color: #f6f4ee; 
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.sys-om-main {
+  flex: 1; padding: 2.5rem 3rem; overflow-y: auto; box-sizing: border-box;
+}
+
+/* HEADER */
+.sys-om-header { margin-bottom: 2rem; }
+.sys-om-title { margin: 0 0 6px 0; font-size: 1.6rem; color: #374151; font-weight: 700; }
+.sys-om-subtitle { margin: 0; font-size: 0.95rem; color: #9ca3af; }
+
+/* STATS CARDS */
+.sys-om-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-bottom: 2rem; }
+.sys-om-stat-card { background: white; border-radius: 16px; padding: 1.5rem; display: flex; align-items: center; gap: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+.sys-om-icon-box { width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center; }
+.sys-om-stat-info h3 { margin: 0 0 4px 0; font-size: 1.4rem; color: #1f2937; font-weight: 700; }
+.sys-om-stat-info p { margin: 0; font-size: 0.85rem; color: #6b7280; font-weight: 500;}
+
+/* Colors */
+.bg-yellow-light { background: #fefce8; } .text-yellow { color: #ca8a04; }
+.bg-green-light { background: #f0fdf4; } .text-green { color: #16a34a; }
+.bg-blue-light { background: #eff6ff; } .text-blue { color: #2563eb; }
+.bg-orange-light { background: #fff7ed; } .text-orange { color: #ea580c; }
+
+/* TAGS BAR */
+.sys-om-tags-bar { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 1.5rem; }
+.sys-om-tag { padding: 8px 16px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; cursor: pointer; border: none; transition: 0.2s; }
+.sys-om-tag.active { background: #b45309; color: white; }
+.sys-om-tag.tag-new { background: #eff6ff; color: #2563eb; }
+.sys-om-tag.tag-confirmed { background: #ffedd5; color: #ea580c; }
+.sys-om-tag.tag-shipping { background: #f3e8ff; color: #9333ea; }
+.sys-om-tag.tag-delivered { background: #dcfce7; color: #16a34a; }
+.sys-om-tag.tag-cancelled { background: #fef2f2; color: #dc2626; }
+.sys-om-tag.tag-returned { background: #fefce8; color: #ca8a04; }
+
+/* SEARCH SECTION */
+.sys-om-search-section { display: flex; gap: 1rem; background: white; padding: 1.25rem 1.5rem; border-radius: 16px; margin-bottom: 2rem; box-shadow: 0 2px 8px rgba(0,0,0,0.02); }
+.sys-om-search-input { flex: 1; max-width: 400px; background-color: #eae5d9; border: none; padding: 12px 20px; border-radius: 30px; font-size: 0.9rem; outline: none; color: #4b5563; }
+.sys-om-placeholder-dropdown { width: 180px; height: 44px; background: #eae5d9; border-radius: 8px; }
+
+/* TABLE */
+.sys-om-table-container { background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); overflow: hidden; }
+.sys-om-table { width: 100%; border-collapse: collapse; text-align: left; }
+.sys-om-table th { background-color: #eae5d9; padding: 16px 1.5rem; font-size: 0.75rem; color: #6b7280; font-weight: 600; text-transform: uppercase;}
+.sys-om-table td { padding: 1.25rem 1.5rem; border-bottom: 1px solid #f3f4f6; vertical-align: middle; color: #374151; font-size: 0.95rem; }
+.sys-om-table tr:last-child td { border-bottom: none; }
+
+.sys-om-subtext { font-size: 0.8rem; color: #9ca3af; margin-top: 4px; }
+.sys-om-subtext.location { display: flex; align-items: center; gap: 4px; }
+.sys-om-village-text { color: #b45309; font-weight: 500; }
+.sys-om-price-text { color: #b45309; font-size: 0.95rem; font-weight: 700;}
+.sys-om-payment-text { font-size: 0.9rem; color: #6b7280; }
+
+/* Status Pills */
+.sys-om-status-pill { display: inline-flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 20px; font-size: 0.8rem; font-weight: 600; }
+.status-new { background: #eff6ff; color: #2563eb; }
+.status-confirmed { background: #ffedd5; color: #ea580c; }
+.status-shipping { background: #f3e8ff; color: #9333ea; }
+.status-delivered { background: #dcfce7; color: #16a34a; }
+.status-cancelled { background: #fef2f2; color: #dc2626; }
+.status-returned { background: #fefce8; color: #ca8a04; }
+
+/* Actions */
+.sys-om-btn-view { background: none; border: none; color: #9ca3af; cursor: pointer; padding: 6px; transition: 0.2s; display: flex; align-items: center; justify-content: center;}
+.sys-om-btn-view:hover { color: #4b5563; }

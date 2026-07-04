@@ -1,0 +1,110 @@
+/* --- SLIDEBAR VILLAGE CSS --- */
+.village-sidebar {
+  width: 270px;
+  background: #1e293b;
+  color: #f8fafc;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  box-shadow: 4px 0 15px rgba(0, 0, 0, 0.08);
+  flex-shrink: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.vs-header {
+  padding: 1.75rem 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.vs-logo-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #d3a046 0%, #ba6924 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.25rem;
+  box-shadow: 0 4px 10px rgba(186, 105, 36, 0.3);
+}
+
+.vs-title h2 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #f1f5f9;
+}
+
+.vs-title p {
+  margin: 2px 0 0 0;
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.vs-nav {
+  padding: 1.5rem 1rem;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.vs-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0.85rem 1.2rem;
+  border-radius: 12px;
+  color: #cbd5e1;
+  background: transparent;
+  border: none;
+  width: 100%;
+  text-align: left;
+  font-size: 0.95rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.vs-menu-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+.vs-menu-item.active {
+  background: linear-gradient(90deg, #d3a046 0%, #ba6924 100%);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(186, 105, 36, 0.25);
+}
+
+.vs-footer {
+  padding: 1.25rem 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.vs-back-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0.85rem 1.2rem;
+  border-radius: 12px;
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  width: 100%;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.vs-back-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #fee2e2;
+}

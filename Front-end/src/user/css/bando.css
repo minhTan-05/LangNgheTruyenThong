@@ -1,0 +1,157 @@
+/* RESET DÀNH RIÊNG CHO TRANG MAP */
+.map-page-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Chiếm trọn màn hình */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #374151;
+  overflow: hidden;
+}
+
+/* LAYOUT CHÍNH */
+.map-main-layout {
+  display: flex;
+  flex: 1;
+  overflow: hidden; /* Ngăn scroll toàn trang, chỉ scroll sidebar */
+}
+
+/* SIDEBAR TRÁI */
+.map-sidebar {
+  width: 340px;
+  background-color: #fffaf0; /* Màu nền kem nhạt */
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #e5e7eb;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.sidebar-header h2 { font-size: 1.25rem; font-weight: bold; margin: 0; }
+.result-badge { background: #fef08a; color: #a16207; font-size: 0.75rem; padding: 2px 8px; border-radius: 12px; font-weight: 500; }
+
+.search-container input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  outline: none;
+  margin-bottom: 1.5rem;
+  box-sizing: border-box;
+}
+
+.filter-container { margin-bottom: 1.5rem; }
+.filter-title { display: flex; align-items: center; gap: 0.5rem; color: #6b7280; font-size: 0.9rem; margin-bottom: 0.75rem; }
+.filter-select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  background: #f9fafb;
+  color: #4b5563;
+  outline: none;
+}
+
+/* DANH SÁCH LÀNG NGHỀ */
+.village-list { display: flex; flex-direction: column; gap: 0.75rem; margin-bottom: 2rem; }
+.list-item {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem;
+  background: white;
+  border-radius: 12px;
+  border: 1px solid #f3f4f6;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+.list-item:hover { border-color: #d4b04c; }
+.list-item.active {
+  background: #fdf6e3;
+  border-color: #d4b04c;
+}
+.item-img { width: 50px; height: 50px; border-radius: 8px; object-fit: cover; margin-right: 12px; }
+.item-info { flex: 1; }
+.item-info h3 { font-size: 0.9rem; margin: 0 0 4px 0; color: #1f2937; }
+.item-location { font-size: 0.75rem; color: #6b7280; display: flex; align-items: center; gap: 2px; margin: 0 0 6px 0; }
+.item-meta { display: flex; align-items: center; justify-content: space-between; }
+.arrow-icon { color: #9ca3af; }
+
+/* Thẻ Tag tĩnh */
+.tag { font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: 500; color: white; }
+.tag-gốm-sứ { background-color: #c2410c; }
+.tag-dệt-may { background-color: #ca8a04; }
+.tag-mộc { background-color: #65a30d; }
+.tag-đúc-đồng { background-color: #9a3412; }
+.rating { font-size: 0.75rem; color: #4b5563; display: flex; align-items: center; gap: 2px; }
+.star-icon { color: #eab308; fill: #eab308; }
+
+/* CHÚ THÍCH */
+.legend-container h4 { font-size: 0.75rem; color: #9ca3af; margin-bottom: 0.75rem; letter-spacing: 1px; }
+.legend-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.legend-item { display: flex; align-items: center; font-size: 0.8rem; color: #4b5563; }
+.dot { width: 8px; height: 8px; border-radius: 50%; margin-right: 6px; }
+.dot-gom { background: #c2410c; } .dot-det { background: #ca8a04; } .dot-moc { background: #65a30d; }
+.dot-kim { background: #d97706; } .dot-duc { background: #9a3412; } .dot-theu { background: #b45309; }
+
+/* BẢN ĐỒ BÊN PHẢI */
+.map-view-area {
+  flex: 1;
+  position: relative;
+  background-color: #f0f0f0;
+}
+.map-background {
+  position: absolute; inset: 0; background-size: cover; background-position: center; opacity: 0.7;
+}
+
+/* POPUP TRÊN BẢN ĐỒ */
+.map-popup {
+  position: absolute;
+  top: 15%; left: 40%;
+  width: 240px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 10px 15px -3px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+.popup-cover { width: 100%; height: 100px; object-fit: cover; border-radius: 12px 12px 0 0; }
+.popup-body { padding: 12px; text-align: center; }
+.popup-body h3 { font-size: 1rem; margin: 0 0 4px 0; }
+.popup-location { font-size: 0.8rem; color: #6b7280; display: flex; align-items: center; justify-content: center; margin: 0 0 4px 0; }
+.popup-desc { font-size: 0.75rem; color: #4b5563; margin-bottom: 12px; }
+.popup-actions { display: flex; gap: 8px; justify-content: center; }
+.btn-primary { background: #c2410c; color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; cursor: pointer; }
+.btn-secondary { background: #fef3c7; color: #b45309; border: none; padding: 6px 12px; border-radius: 6px; font-size: 0.8rem; cursor: pointer; display: flex; align-items: center; gap: 4px; }
+.popup-arrow-down { position: absolute; bottom: -8px; left: 50%; transform: translateX(-50%); border-left: 8px solid transparent; border-right: 8px solid transparent; border-top: 8px solid white; }
+
+/* MARKER */
+.map-marker { position: absolute; top: 40%; left: 45%; display: flex; flex-direction: column; items: center; }
+.marker-pin { width: 24px; height: 24px; background: #c2410c; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); border: 2px solid white; box-shadow: 0 2px 4px rgba(0,0,0,0.3); z-index: 2; }
+.marker-shadow { width: 14px; height: 4px; background: rgba(0,0,0,0.3); border-radius: 50%; margin-top: 2px; filter: blur(1px); }
+
+/* POPUP NGANG (DƯỚI CÙNG) */
+.map-popup-horizontal {
+  position: absolute;
+  bottom: 40px; left: 50%; transform: translateX(-50%);
+  display: flex;
+  background: white;
+  border-radius: 12px;
+  padding: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  width: 400px;
+  z-index: 10;
+}
+.btn-close { position: absolute; top: 8px; right: 8px; background: none; border: none; color: #9ca3af; cursor: pointer; }
+.map-popup-horizontal img { width: 100px; height: 100px; object-fit: cover; border-radius: 8px; margin-right: 16px; }
+.horizontal-info { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.horizontal-info h3 { margin: 0 0 4px 0; font-size: 1rem; }
+.btn-outline { background: white; border: 1px solid #c2410c; color: #c2410c; padding: 4px 12px; border-radius: 6px; font-size: 0.8rem; display: flex; align-items: center; gap: 4px; cursor: pointer; }
+.btn-sm { padding: 4px 12px; font-size: 0.8rem; }
+.mt-2 { margin-top: 8px; }

@@ -1,0 +1,38 @@
+.shared-footer {
+  background-color: #4b4b4b; /* Màu xám đậm theo thiết kế */
+  color: #e5e7eb;
+  padding: 1.5rem 2rem;
+  font-size: 0.85rem;
+  z-index: 1000;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.footer-content p {
+  margin: 0;
+}
+
+.footer-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.footer-links a,
+.footer-links span {
+  color: #e5e7eb;
+  text-decoration: none;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+
+.footer-links a:hover,
+.footer-links span:hover {
+  color: white;
+  text-decoration: underline;
+}

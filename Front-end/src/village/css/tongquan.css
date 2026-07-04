@@ -1,0 +1,142 @@
+/* --- TỔNG QUAN LÀNG NGHÈ CSS --- */
+.vo-main {
+  flex: 1;
+  padding: 2.5rem 3rem;
+  overflow-y: auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.vo-header {
+  margin-bottom: 2rem;
+}
+
+.vo-title {
+  margin: 0 0 6px 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.vo-subtitle {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.vo-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.vo-stat-box {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  border: 1px solid #f1f5f9;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.vo-stat-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.vo-stat-info h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.vo-stat-info p {
+  margin: 2px 0 0 0;
+  font-size: 0.85rem;
+  color: #64748b;
+}
+
+.vo-quick-actions {
+  background: white;
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  border: 1px solid #f1f5f9;
+  margin-bottom: 2.5rem;
+}
+
+.vo-quick-actions h3 {
+  margin: 0 0 1.25rem 0;
+  font-size: 1.15rem;
+  color: #1e293b;
+}
+
+.vo-actions-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1rem;
+}
+
+.vo-action-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 1.25rem;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  color: #334155;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.vo-action-btn:hover {
+  background: #fffbeb;
+  border-color: #fcd34d;
+  color: #b45309;
+  transform: translateY(-2px);
+}
+
+.vo-section {
+  background: white;
+  border-radius: 16px;
+  padding: 1.75rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  border: 1px solid #f1f5f9;
+}
+
+.vo-section h3 {
+  margin: 0 0 1rem 0;
+  font-size: 1.15rem;
+  color: #1e293b;
+}
+
+.vo-activity-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.vo-activity-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.vo-activity-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}

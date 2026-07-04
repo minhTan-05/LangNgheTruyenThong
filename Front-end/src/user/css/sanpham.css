@@ -1,0 +1,242 @@
+.shop-wrapper {
+  background-color: #f6f4ee; /* Màu nền kem/be chuẩn theo ảnh thiết kế mới */
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.shop-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem 4rem 2rem;
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.shop-page-title {
+  font-size: 2rem;
+  color: #4b4b4b; /* Xám đậm */
+  margin: 0 0 2rem 0;
+  font-weight: 600;
+}
+
+.shop-layout {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+/* --- SIDEBAR BỘ LỌC --- */
+.shop-sidebar {
+  width: 260px;
+  background-color: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
+  flex-shrink: 0;
+}
+
+.shop-filter-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  color: #374151;
+}
+
+.shop-filter-header h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.shop-filter-group {
+  margin-bottom: 1.5rem;
+}
+
+.shop-filter-group:last-child {
+  margin-bottom: 0;
+}
+
+.shop-filter-group label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #4b5563;
+  margin-bottom: 0.75rem;
+}
+
+.shop-search-input {
+  width: 100%;
+  padding: 0.7rem 1rem;
+  border: 1px solid #f3f4f6;
+  background-color: white;
+  border-radius: 20px;
+  outline: none;
+  font-size: 0.85rem;
+  box-sizing: border-box;
+  color: #4b5563;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.02);
+}
+
+.shop-search-input::placeholder {
+  color: #9ca3af;
+}
+
+.shop-filter-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.shop-filter-btn {
+  background-color: #e6e3d8; /* Màu nền be nhạt (taupe) cho nút chưa chọn */
+  border: none;
+  padding: 0.6rem 1rem;
+  border-radius: 8px;
+  text-align: left;
+  font-size: 0.85rem;
+  color: #4b4b4b;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 500;
+}
+
+.shop-filter-btn:hover {
+  background-color: #dcd9ce;
+}
+
+.shop-filter-btn.active {
+  background-color: #c5a859; /* Màu vàng mù tạt (mustard gold) */
+  color: white;
+}
+
+/* --- KHU VỰC SẢN PHẨM --- */
+.shop-content {
+  flex: 1;
+}
+
+.shop-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+.shop-results-count {
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+.shop-sort-dropdown {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: #4b5563;
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+/* --- LƯỚI SẢN PHẨM --- */
+.shop-products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.shop-product-card {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.shop-product-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.08);
+}
+
+.shop-product-image {
+  height: 220px; /* Tinh chỉnh chiều cao ảnh cho cân đối giống thiết kế */
+  background-color: #f3f4f6;
+  overflow: hidden;
+}
+
+.shop-product-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.shop-product-info {
+  padding: 1.25rem;
+}
+
+.shop-product-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #374151;
+  margin: 0 0 0.25rem 0;
+}
+
+.shop-product-village {
+  font-size: 0.8rem;
+  color: #9ca3af;
+  margin: 0 0 1rem 0;
+}
+
+.shop-product-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.shop-product-price {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #b45309; /* Màu cam đất đậm */
+}
+
+.shop-btn-add-cart {
+  background-color: #b45309;
+  color: white;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.shop-btn-add-cart:hover {
+  background-color: #92400e;
+}
+
+/* Responsive cơ bản */
+@media (max-width: 1024px) {
+  .shop-products-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .shop-layout {
+    flex-direction: column;
+  }
+  .shop-sidebar {
+    width: 100%;
+  }
+  .shop-products-grid {
+    grid-template-columns: 1fr;
+  }
+}
