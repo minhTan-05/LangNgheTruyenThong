@@ -1,0 +1,32 @@
+.ps-container { display: flex; min-height: 100vh; background: #f6f4ee; font-family: -apple-system, sans-serif; }
+
+/* Cột trái (dùng chung phong cách với các trang trước) */
+.ps-left { flex: 1; background: #555555; display: flex; align-items: center; justify-content: center; padding: 3rem; }
+.ps-logo-box { width: 72px; height: 72px; background: #cda846; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; }
+.ps-title { font-size: 2.5rem; color: white; margin: 0 0 1rem 0; line-height: 1.2; }
+.ps-desc { color: #a1a1aa; margin-bottom: 3rem; }
+
+/* Steps */
+.ps-steps { display: flex; flex-direction: column; gap: 2rem; }
+.ps-step { display: flex; align-items: center; gap: 1rem; color: #71717a; font-weight: 500; }
+.step-circle, .step-check { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.step-circle { border: 2px solid #71717a; }
+.step-check { background: #10b981; color: white; }
+.ps-step.active { color: white; }
+.ps-step.active .step-circle { background: #cda846; border-color: #cda846; }
+.ps-step.completed { color: #10b981; }
+
+/* Cột phải */
+.ps-right { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+.ps-form-wrapper { width: 100%; max-width: 480px; }
+
+.ps-card { background: white; border-radius: 24px; padding: 3rem; box-shadow: 0 10px 40px rgba(0,0,0,0.05); text-align: center; }
+.ps-icon-success { margin-bottom: 2rem; }
+
+.ps-form-title { font-size: 1.6rem; color: #374151; margin-bottom: 1rem; }
+.ps-form-subtitle { color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin-bottom: 2.5rem; }
+
+/* Buttons */
+.ps-actions { display: flex; flex-direction: column; gap: 1rem; }
+.btn-login { background: #b45309; color: white; border: none; padding: 16px; border-radius: 12px; font-weight: 600; cursor: pointer; }
+.btn-home { background: white; color: #374151; border: 1px solid #d1d5db; padding: 16px; border-radius: 12px; font-weight: 600; cursor: pointer; }

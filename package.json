@@ -1,0 +1,16 @@
+{
+  "name": "nien-luan-cntt-root",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dự án Niên luận Công nghệ Thông tin - Quản lý & Khám phá Làng Nghề Việt Nam",
+  "scripts": {
+    "start": "cd Front-end && npm start",
+    "build": "cd Front-end && npm run build",
+    "test": "cd Front-end && npm test",
+    "install-all": "cd Front-end && npm install"
+  },
+  "dependencies": {
+    "leaflet": "^1.9.4",
+    "react-leaflet": "^5.0.0"
+  }
+}

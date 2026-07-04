@@ -1,0 +1,106 @@
+/* Layout chung */
+.dash-wrapper {
+  display: flex; min-height: 100vh;
+  background-color: #f6f4ee; 
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.rp-main {
+  flex: 1; padding: 2.5rem 3rem; overflow-y: auto; box-sizing: border-box;
+}
+
+/* Header */
+.rp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 2rem; }
+.rp-title { margin: 0 0 6px 0; font-size: 1.5rem; color: #374151; font-weight: 700; }
+.rp-subtitle { margin: 0; font-size: 0.9rem; color: #9ca3af; }
+.rp-btn-save { 
+  display: flex; align-items: center; gap: 8px; 
+  background: #cda846; color: white; border: none; 
+  padding: 10px 20px; border-radius: 8px; font-weight: 600; cursor: pointer; transition: 0.2s;
+}
+.rp-btn-save.disabled {
+  background: #d1d5db; color: #9ca3af; cursor: not-allowed; pointer-events: none;
+}
+
+/* Role Cards */
+.rp-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 1.5rem; }
+.rp-role-card { background: white; border-radius: 16px; padding: 1.5rem; box-shadow: 0 4px 12px rgba(0,0,0,0.02); }
+.rp-card-top { display: flex; align-items: center; gap: 12px; margin-bottom: 1.25rem; }
+.rp-role-icon { width: 40px; height: 40px; background: #f3f4f6; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.rp-card-top h4 { margin: 0 0 4px 0; font-size: 1rem; color: #374151; }
+
+/* Badges */
+.rp-badge { padding: 2px 8px; border-radius: 12px; font-size: 0.7rem; font-weight: 600; }
+.rp-badge.customer { background: #f3f4f6; color: #4b5563; }
+.rp-badge.manager { background: #eff6ff; color: #2563eb; }
+.rp-badge.admin { background: #faf5ff; color: #9333ea; }
+
+.text-blue { color: #2563eb !important; }
+.text-purple { color: #9333ea !important; }
+.text-yellow { color: #cda846 !important; }
+.text-green { color: #10b981 !important; }
+.text-gray { color: #9ca3af !important; }
+
+/* Stats & Progress */
+.rp-card-stats { display: flex; align-items: baseline; gap: 6px; margin-bottom: 1rem; }
+.rp-card-stats h2 { margin: 0; font-size: 1.8rem; color: #1f2937; }
+.rp-card-stats p { margin: 0; font-size: 0.85rem; color: #9ca3af; }
+
+.rp-progress-track { width: 100%; height: 6px; background: #f3f4f6; border-radius: 4px; overflow: hidden; }
+.rp-progress-fill { height: 100%; border-radius: 4px; }
+.bg-gray-dark { background: #9ca3af; }
+.bg-blue { background: #2563eb; }
+.bg-yellow { background: #cda846; }
+
+/* Alert Box */
+.rp-alert-box { 
+  display: flex; align-items: flex-start; gap: 12px; 
+  background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; 
+  padding: 1rem 1.5rem; border-radius: 12px; margin-bottom: 2rem; font-size: 0.9rem; line-height: 1.5;
+}
+.rp-alert-box p { margin: 0; }
+
+/* PERMISSIONS TABLE */
+.rp-table-container { background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.02); overflow: hidden; }
+
+/* Columns Layout */
+.rp-col-feature { flex: 1; padding-right: 2rem; }
+.rp-col-roles { display: flex; width: 450px; }
+.rp-col-roles > div { flex: 1; text-align: center; display: flex; justify-content: center; align-items: center;}
+
+/* Header Row */
+.rp-table-header { 
+  display: flex; background: #4b5563; color: white; 
+  padding: 16px 1.5rem; font-weight: 600; font-size: 0.9rem; align-items: center;
+}
+.rp-role-col-header { display: flex; flex-direction: column; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 500;}
+
+/* Group Header */
+.rp-group-header { 
+  display: flex; background: #fdfaf6; padding: 14px 1.5rem; 
+  border-bottom: 1px solid #f3f4f6; cursor: pointer; align-items: center; transition: background 0.2s;
+}
+.rp-group-header:hover { background: #f9f6f0; }
+.rp-group-title { display: flex; align-items: center; gap: 8px; font-weight: 600; color: #1f2937; font-size: 0.95rem; }
+.rp-group-title span { color: #9ca3af; font-weight: 400; font-size: 0.85rem; }
+.rp-chevron { color: #d1d5db; margin-left: 8px; }
+.rp-group-counts { font-size: 0.85rem; color: #9ca3af; }
+
+/* Group Content & Item Row */
+.rp-group-content { display: flex; flex-direction: column; }
+.rp-item-row { 
+  display: flex; padding: 1.25rem 1.5rem; border-bottom: 1px solid #f9fafb; align-items: center;
+}
+.rp-item-row:last-child { border-bottom: 1px solid #f3f4f6; }
+.rp-item-row h4 { margin: 0 0 4px 0; font-size: 0.9rem; color: #374151; font-weight: 500; }
+.rp-item-row p { margin: 0; font-size: 0.8rem; color: #9ca3af; line-height: 1.4; }
+
+/* Checkboxes */
+.rp-check-cell { display: flex; justify-content: center; align-items: center; }
+.rp-check-box { 
+  width: 28px; height: 28px; border-radius: 50%; 
+  display: flex; align-items: center; justify-content: center;
+}
+.bg-green-light { background: #dcfce7; }
+.bg-gray-light { background: #f3f4f6; }
+.bg-purple-light { background: #f3e8ff; }

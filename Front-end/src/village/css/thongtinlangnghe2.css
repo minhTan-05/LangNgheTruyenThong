@@ -1,0 +1,95 @@
+/* --- THONG TIN LANG NGHE 2 CSS --- */
+.vl2-main {
+  flex: 1;
+  padding: 2.5rem 3rem;
+  overflow-y: auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.vl2-header {
+  margin-bottom: 2rem;
+}
+
+.vl2-title {
+  margin: 0 0 6px 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+
+.vl2-subtitle {
+  margin: 0;
+  color: #64748b;
+  font-size: 0.95rem;
+}
+
+.vl2-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+
+.vl2-card {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
+  border: 1px solid #f1f5f9;
+}
+
+.vl2-form-group {
+  margin-bottom: 1.25rem;
+}
+
+.vl2-form-group label {
+  display: block;
+  font-weight: 600;
+  color: #334155;
+  margin-bottom: 6px;
+  font-size: 0.85rem;
+}
+
+.vl2-form-group input {
+  width: 100%;
+  padding: 10px 14px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #1e293b;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.vl2-form-group input:focus {
+  border-color: #b45309;
+}
+
+.vl2-map-box {
+  width: 100%;
+  height: 220px;
+  background: #e2e8f0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.vl2-btn-save {
+  background: #b45309;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.vl2-btn-save:hover {
+  background: #92400e;
+}

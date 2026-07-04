@@ -1,0 +1,158 @@
+/* Kế thừa dash-wrapper từ AdminSidebar */
+.dash-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background-color: #f6f4ee; 
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.stat-main {
+  flex: 1;
+  padding: 2.5rem 3rem;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* HEADER */
+.stat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+.stat-title { margin: 0 0 6px 0; font-size: 1.5rem; color: #374151; font-weight: 700; }
+.stat-subtitle { margin: 0; font-size: 0.9rem; color: #9ca3af; }
+
+.stat-actions { display: flex; align-items: center; gap: 1rem; }
+.stat-time-filters {
+  display: flex;
+  background: white;
+  border-radius: 30px;
+  overflow: hidden;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+.stat-time-btn {
+  background: none; border: none; padding: 10px 20px; font-size: 0.85rem;
+  color: #6b7280; font-weight: 500; cursor: pointer; transition: 0.2s;
+}
+.stat-time-btn.active { background: #b45309; color: white; }
+.stat-btn-export {
+  display: flex; align-items: center; gap: 6px; background: white;
+  border: none; padding: 10px 20px; border-radius: 30px; font-size: 0.85rem;
+  color: #374151; font-weight: 600; cursor: pointer; box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+}
+
+/* KPI CARDS */
+.stat-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.stat-kpi-card {
+  background: white; border-radius: 16px; padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+.kpi-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem; }
+.kpi-label { font-size: 0.75rem; color: #9ca3af; font-weight: 600; letter-spacing: 0.5px; }
+.kpi-icon-box {
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+}
+.kpi-value { margin: 0 0 8px 0; font-size: 1.8rem; font-weight: 700; color: #1f2937; }
+.kpi-trend { margin: 0; font-size: 0.8rem; display: flex; align-items: center; gap: 4px; font-weight: 600; }
+
+/* COLORS */
+.bg-yellow-light { background: #fefce8; } .text-yellow { color: #cda846; } .bg-yellow { background: #cda846;}
+.bg-orange-light { background: #fff7ed; } .text-orange { color: #b45309; } .bg-orange { background: #b45309;}
+.bg-blue-light { background: #eff6ff; } .text-blue { color: #3b82f6; }
+.bg-green-light { background: #f0fdf4; } .text-green { color: #16a34a; }
+.bg-green-dark { background: #658354; } 
+.bg-gray { background: #d1d5db; }
+
+/* CHARTS LAYOUT */
+.stat-middle-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+.stat-card {
+  background: white; border-radius: 16px; padding: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+.stat-full-width { margin-bottom: 2rem; }
+.stat-card-header {
+  display: flex; align-items: center; gap: 8px; margin-bottom: 2rem;
+}
+.stat-card-header h3 { margin: 0; font-size: 1.1rem; color: #374151; font-weight: 700; }
+
+/* MOCK LINE CHARTS */
+.mock-chart-container {
+  position: relative; height: 260px; width: 100%;
+  padding-bottom: 40px; padding-left: 45px; box-sizing: border-box;
+}
+.chart-grid-lines {
+  position: absolute; top: 0; left: 45px; right: 0; bottom: 40px;
+  display: flex; flex-direction: column; justify-content: space-between; z-index: 1;
+}
+.chart-grid-lines div { border-top: 1px dashed #e5e7eb; width: 100%; }
+.chart-x-axis {
+  position: absolute; bottom: 20px; left: 45px; right: 0;
+  display: flex; justify-content: space-between; font-size: 0.75rem; color: #9ca3af;
+}
+.chart-y-axis {
+  position: absolute; top: 0; left: 0; bottom: 40px; width: 35px;
+  display: flex; flex-direction: column; justify-content: space-between;
+  font-size: 0.7rem; color: #9ca3af; text-align: right;
+}
+.mock-line-chart {
+  position: absolute; top: 0; left: 45px; right: 0; bottom: 40px;
+  width: calc(100% - 45px); height: calc(100% - 40px); z-index: 2; overflow: visible;
+}
+.chart-legend {
+  position: absolute; bottom: -5px; left: 45px; right: 0;
+  text-align: center; font-size: 0.8rem; color: #b45309; display: flex; justify-content: center; align-items: center; gap: 6px;
+}
+.legend-dot { width: 8px; height: 8px; border-radius: 50%; display: inline-block; }
+
+/* MOCK DONUT CHART */
+.mock-donut-container { display: flex; flex-direction: column; align-items: center; gap: 2rem; }
+.donut-chart {
+  width: 160px; height: 160px; border-radius: 50%;
+  /* Conic gradient giả lập tỷ lệ phần trăm */
+  background: conic-gradient(#cda846 0% 36%, #b45309 36% 63%, #658354 63% 84%, #d1d5db 84% 100%);
+  position: relative;
+}
+/* Lõi màu trắng để tạo thành hình Donut */
+.donut-chart::after {
+  content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  width: 100px; height: 100px; background: white; border-radius: 50%;
+}
+.donut-legend { list-style: none; padding: 0; margin: 0; width: 100%; display: flex; flex-direction: column; gap: 10px; }
+.donut-legend li { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #4b5563; }
+.donut-legend li strong { color: #1f2937; }
+.donut-legend .legend-dot { margin-right: 8px; }
+
+/* TOP PRODUCTS TABLE */
+.stat-table-card { padding-bottom: 0; overflow: hidden; }
+.stat-table { width: 100%; border-collapse: collapse; text-align: left; }
+.stat-table th { background: #eae5d9; padding: 14px 1.5rem; font-size: 0.75rem; color: #6b7280; font-weight: 600; border-bottom: 1px solid #e5e7eb; }
+.stat-table td { padding: 1.25rem 1.5rem; border-bottom: 1px solid #f3f4f6; font-size: 0.9rem; color: #374151; }
+.stat-table tr:last-child td { border-bottom: none; }
+
+.rank-badge {
+  width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; font-weight: bold; color: white;
+}
+.rank-1 { background: #cda846; }
+.rank-2 { background: #b45309; }
+.rank-3 { background: #9ca3af; }
+.rank-4 { background: #d1d5db; }
+
+/* Progress Bar for ratio */
+.ratio-cell { display: flex; align-items: center; gap: 12px; }
+.ratio-bar-bg { flex: 1; height: 6px; background: #f3f4f6; border-radius: 3px; overflow: hidden; max-width: 100px;}
+.ratio-bar-fill { height: 100%; background: #cda846; border-radius: 3px; }
+.ratio-text { font-size: 0.85rem; color: #6b7280; width: 35px; text-align: right;}

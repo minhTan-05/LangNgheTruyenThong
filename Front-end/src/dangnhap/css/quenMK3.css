@@ -1,0 +1,45 @@
+.rp-container { display: flex; min-height: 100vh; background: #f6f4ee; font-family: -apple-system, sans-serif; }
+
+/* Cột trái (dùng chung với OTP) */
+.rp-left { flex: 1; background: #555555; display: flex; align-items: center; justify-content: center; padding: 3rem; }
+.rp-logo-box { width: 72px; height: 72px; background: #cda846; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; }
+.rp-title { font-size: 2.5rem; color: white; margin: 0 0 1rem 0; }
+.rp-desc { color: #a1a1aa; margin-bottom: 3rem; }
+
+.rp-steps { display: flex; flex-direction: column; gap: 2rem; }
+.rp-step { display: flex; align-items: center; gap: 1rem; color: #71717a; font-weight: 500; }
+.step-circle, .step-check { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.step-circle { border: 2px solid #71717a; }
+.step-check { background: #10b981; color: white; }
+.rp-step.active { color: white; }
+.rp-step.active .step-circle { background: #cda846; border-color: #cda846; }
+
+/* Cột phải */
+.rp-right { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+.rp-form-wrapper { width: 100%; max-width: 480px; }
+.rp-card { background: white; border-radius: 24px; padding: 3rem; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
+
+.rp-icon-box { background: #fff7ed; width: 64px; height: 64px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
+.rp-form-title { font-size: 1.8rem; color: #374151; margin: 0 0 1rem 0; }
+.rp-form-subtitle { color: #6b7280; margin-bottom: 2rem; }
+
+.input-group { margin-bottom: 1.5rem; }
+.input-group label { display: block; font-size: 0.9rem; font-weight: 600; color: #374151; margin-bottom: 8px; }
+.password-wrapper { position: relative; }
+.input-group input { width: 100%; background: #eae5d9; border: 1px solid transparent; padding: 14px 16px; border-radius: 12px; outline: none; box-sizing: border-box;}
+.input-group input:focus { border-color: #cda846; }
+.btn-toggle { position: absolute; right: 12px; top: 14px; background: none; border: none; color: #9ca3af; cursor: pointer; }
+
+/* Password Strength */
+.strength-meter { margin-bottom: 1rem; }
+.strength-bar { height: 6px; background: #e5e7eb; border-radius: 3px; margin-bottom: 6px; }
+.strength-bar .fill { height: 100%; background: #f59e0b; border-radius: 3px; }
+.strength-label { font-size: 0.8rem; font-weight: 600; color: #374151; }
+
+.criteria-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.5rem; font-size: 0.85rem; }
+.criterion { display: flex; align-items: center; gap: 8px; color: #9ca3af; }
+.criterion.valid { color: #10b981; }
+.criterion .circle { width: 16px; height: 16px; border-radius: 50%; border: 1px solid #d1d5db; display: flex; align-items: center; justify-content: center; font-size: 10px; }
+.criterion.valid .circle { border-color: #10b981; }
+
+.btn-submit { width: 100%; background: #b45309; color: white; border: none; padding: 16px; border-radius: 12px; font-weight: 600; cursor: pointer; }

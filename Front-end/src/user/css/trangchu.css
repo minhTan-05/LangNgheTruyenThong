@@ -1,0 +1,400 @@
+/* RESET & BASE STYLES */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #fcfaf7;
+  color: #374151;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 1. HERO SECTION */
+.hero-section {
+  position: relative;
+  height: 450px;
+}
+
+.hero-background {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(124, 45, 18, 0.4);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  color: white;
+  margin-bottom: 1rem;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.hero-subtitle {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  background: white;
+  border-radius: 9999px;
+  padding: 0.5rem;
+  width: 100%;
+  max-width: 42rem;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.search-icon {
+  color: #9ca3af;
+  margin: 0 0.5rem 0 1rem;
+}
+
+.search-bar input {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 0.5rem 0;
+  color: #374151;
+  font-size: 1rem;
+}
+
+.btn-search {
+  background-color: #f97316;
+  color: white;
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-search:hover {
+  background-color: #ea580c;
+}
+
+/* MAIN LAYOUT */
+.main-container {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 3rem 1rem;
+}
+
+/* 2. STATS SECTION */
+.stats-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: -5rem;
+  position: relative;
+  z-index: 20;
+  margin-bottom: 4rem;
+}
+
+.stat-card {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #f3f4f6;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.stat-icon-wrapper {
+  background: #f9fafb;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+}
+
+.icon-yellow { color: #ca8a04; width: 24px; height: 24px; }
+.icon-orange { color: #ea580c; width: 24px; height: 24px; }
+.icon-gray { color: #4b5563; width: 24px; height: 24px; }
+
+.stat-title {
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-bottom: 0.25rem;
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+/* SECTIONS */
+.section-block {
+  margin-bottom: 4rem;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 1.5rem;
+}
+
+.section-header h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+}
+
+.link-view-all {
+  color: #f97316;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.link-view-all:hover {
+  text-decoration: underline;
+}
+
+.grid-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+}
+
+/* 3. LÀNG NGHỀ CARDS */
+.card-village {
+  background: white;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #f3f4f6;
+  transition: box-shadow 0.2s;
+}
+
+.card-village:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.village-img-wrapper {
+  position: relative;
+  height: 12rem;
+}
+
+.village-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.village-tag {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  background: rgba(194, 65, 12, 0.8);
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 9999px;
+  backdrop-filter: blur(4px);
+}
+
+.village-content {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.village-content h3 {
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.village-location {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  color: #6b7280;
+  font-size: 0.875rem;
+}
+
+.village-desc {
+  color: #4b5563;
+  font-size: 0.875rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 40px;
+}
+
+.village-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #f9fafb;
+}
+
+.meta-views { display: flex; align-items: center; gap: 0.25rem; color: #6b7280; }
+.meta-rating { display: flex; align-items: center; gap: 0.25rem; color: #eab308; font-weight: 500; }
+
+/* 4. PRODUCT CARDS */
+.card-product {
+  background: white;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  border: 1px solid #f3f4f6;
+  transition: box-shadow 0.2s;
+}
+
+.card-product:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.product-img-wrapper {
+  height: 14rem;
+  background: #f3f4f6;
+  border-radius: 0.5rem;
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+
+.product-img-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.card-product:hover .product-img-wrapper img {
+  transform: scale(1.05);
+}
+
+.card-product h3 {
+  font-weight: 600;
+  color: #1f2937;
+  font-size: 1rem;
+  margin-bottom: 0.25rem;
+}
+
+.product-village {
+  color: #9ca3af;
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+}
+
+.product-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.product-price {
+  color: #ea580c;
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.btn-add-cart {
+  background: #ffedd5;
+  color: #ea580c;
+  border: none;
+  padding: 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-add-cart:hover {
+  background: #f97316;
+  color: white;
+}
+
+/* 5. FOOTER */
+.footer {
+  background-color: #1f2937;
+  color: #d1d5db;
+  padding: 1.5rem 0;
+}
+
+.footer-content {
+  max-width: 1152px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+}
+
+.footer-links {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.footer-links a:hover {
+  color: white;
+}
+
+/* RESPONSIVE DESIGN (Cho Tablet & Desktop) */
+@media (min-width: 768px) {
+  .nav-links { display: flex; }
+  .hero-content h1 { font-size: 3rem; }
+  
+  .stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .grid-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .footer-content {
+    flex-direction: row;
+  }
+  
+  .footer-links {
+    margin-top: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  .grid-cards {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
