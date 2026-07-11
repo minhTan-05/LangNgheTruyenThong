@@ -1,0 +1,6 @@
+@AptWatchApi_HostAddress = http://localhost:5120
+
+GET {{AptWatchApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

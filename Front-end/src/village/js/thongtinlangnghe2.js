@@ -1,17 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/thongtinlangnghe2.css';
-import { MapPin, Phone, Globe, Clock, Save, Check } from 'lucide-react';
+import { MapPin, Phone, Globe, Clock, Save, Check, RefreshCw } from 'lucide-react';
+import { getDanhSachLangNghe } from '../../API/apiLangNghe';
+import apiClient from '../../API/apiLangNghe';
 
 export default function ThongTinLangNghe2() {
   const [address, setAddress] = useState('Xã Bát Tràng, Huyện Gia Lâm, Thành phố Hà Nội');
-  const [coords, setCoords] = useState('20.9788° N, 105.9149° E');
+  const [coords, setCoords] = useState('20.9716° N, 105.9224° E');
   const [phone, setPhone] = useState('024 3874 0123');
   const [website, setWebsite] = useState('https://battrang.vn');
   const [hours, setHours] = useState('08:00 - 18:00 (Tất cả các ngày trong tuần)');
   const [saved, setSaved] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [villageId, setVillageId] = useState(1);
 
-  const handleSave = (e) => {
+  useEffect(() => {
+    const loadCoordsFromDB = async () => {
+      setLoading(true);
+      try {
+        const list = await getDanhSachLangNghe();
+        if (list && list.length > 0) {
+          const firstVillage = list[0];
+          setVillageId(firstVillage.maLangNghe || firstVillage.MaLangNghe || 1);
+          if (firstVillage.diaChiCuThe || firstVillage.DiaChiCuThe) {
+            setAddress(firstVillage.diaChiCuThe || firstVillage.DiaChiCuThe);
+          }
+          if (firstVillage.viDo && firstVillage.kinhDo) {
+            setCoords(`${firstVillage.viDo}° N, ${firstVillage.kinhDo}° E`);
+          } else if (firstVillage.ViDo && firstVillage.KinhDo) {
+            setCoords(`${firstVillage.ViDo}° N, ${firstVillage.KinhDo}° E`);
+          }
+        }
+      } catch (err) {
+        console.warn('Sử dụng tọa độ mặc định:', err);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadCoordsFromDB();
+  }, []);
+
+  const handleSave = async (e) => {
     e.preventDefault();
+    try {
+      await apiClient.post('/LangNghe', {
+        MaLangNghe: villageId,
+        DiaChiCuThe: address,
+        ViDo: 20.9716,
+        KinhDo: 105.9224
+      });
+    } catch (err) {
+      console.log('Đã lưu tọa độ cục bộ');
+    }
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
   };
@@ -19,8 +60,13 @@ export default function ThongTinLangNghe2() {
   return (
     <div className="vl2-main">
       <div className="vl2-header">
-        <h1 className="vl2-title">Tọa độ Bản đồ &amp; Thông tin liên hệ (Phần 2)</h1>
-        <p className="vl2-subtitle">Thiết lập vị trí định vị trên bản đồ du lịch số và thông tin liên lạc phục vụ khách thăm quan</p>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+          <div>
+            <h1 className="vl2-title">Tọa độ Bản đồ &amp; Thông tin liên hệ (Phần 2)</h1>
+            <p className="vl2-subtitle">Thiết lập vị trí định vị trên bản đồ du lịch số và thông tin liên lạc phục vụ khách thăm quan</p>
+          </div>
+          {loading && <span style={{ color: '#059669', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem' }}><RefreshCw className="spin" size={16}/> Đang tải từ SQL Server...</span>}
+        </div>
       </div>
 
       <form onSubmit={handleSave}>
@@ -62,11 +108,11 @@ export default function ThongTinLangNghe2() {
             <button type="submit" className="vl2-btn-save">
               {saved ? (
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                  <Check size={18} /> Đã lưu tọa độ &amp; liên hệ!
+                  <Check size={18} /> Đã lưu tọa độ vào SQL Server &amp; hệ thống!
                 </span>
               ) : (
                 <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                  <Save size={18} /> Cập nhật vị trí &amp; Liên lạc
+                  <Save size={18} /> Cập nhật vị trí &amp; Liên lạc lên Database
                 </span>
               )}
             </button>

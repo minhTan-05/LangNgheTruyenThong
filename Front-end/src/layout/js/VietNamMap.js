@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'; // BẮT BUỘC: Phải import CSS để bản đồ không bị vỡ giao diện
 import L from 'leaflet';
+import { getDanhSachLangNghe } from '../../API/apiLangNghe';
 
 // 1. Sửa lỗi hiển thị icon mặc định của Leaflet trong React
 const defaultIcon = new L.Icon({
@@ -18,8 +19,8 @@ export default function VietnamMap({ onSelectVillage, setActiveTab }) {
   // 2. Tọa độ trung tâm (Khu vực Miền Trung) và mức zoom bao quát Việt Nam
   const centerPosition = [16.047079, 108.206230];
   
-  // Dữ liệu mẫu minh họa chi tiết 4 làng nghề
-  const villages = [
+  // Dữ liệu mẫu dự phòng khi Backend offline hoặc đang tải
+  const fallbackVillages = [
     { 
       id: 1, 
       name: 'Làng gốm Bát Tràng', 
@@ -61,6 +62,34 @@ export default function VietnamMap({ onSelectVillage, setActiveTab }) {
       img: 'https://images.unsplash.com/photo-1599583196884-60be78ee4b45?q=80&w=200&auto=format&fit=crop' 
     },
   ];
+
+  const [villages, setVillages] = useState(fallbackVillages);
+
+  useEffect(() => {
+    // Gọi API từ Backend C# ASP.NET Core để đổ dữ liệu thật từ SQL Server
+    const fetchVillagesFromDB = async () => {
+      try {
+        const data = await getDanhSachLangNghe();
+        if (data && data.length > 0) {
+          const mappedData = data.map((item) => ({
+            id: item.maLangNghe || item.MaLangNghe,
+            name: item.tenLangNghe || item.TenLangNghe,
+            lat: Number(item.viDo || item.ViDo),
+            lng: Number(item.kinhDo || item.KinhDo),
+            product: item.nhomNghe?.tenNhomNghe || item.NhomNghe?.TenNhomNghe || 'Nghề truyền thống',
+            location: item.tinhThanh || item.TinhThanh || 'Việt Nam',
+            rating: Number(item.diemDanhGia || item.DiemDanhGia || 5).toFixed(1),
+            img: item.anhBia || item.AnhBia || 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=200&auto=format&fit=crop'
+          }));
+          setVillages(mappedData);
+        }
+      } catch (err) {
+        console.warn('Backend hiện chưa khởi chạy, sử dụng dữ liệu mẫu dự phòng:', err);
+      }
+    };
+
+    fetchVillagesFromDB();
+  }, []);
 
   return (
     <div style={{ height: '100%', width: '100%', position: 'relative' }}>
