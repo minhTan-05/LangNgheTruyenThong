@@ -1,38 +1,37 @@
 import React, { useState, useEffect } from 'react';
 import '../css/thongtinlangnghe1.css';
 import { Save, Check, RefreshCw } from 'lucide-react';
-import { getDanhSachLangNghe } from '../../API/apiLangNghe';
-import apiClient from '../../API/apiLangNghe';
+import { getDanhSachLangNghe, capNhatLangNghe } from '../../API/apiLangNghe';
 
 export default function ThongTinLangNghe1() {
-  const [name, setName] = useState('Làng Gốm Bát Tràng');
-  const [history, setHistory] = useState('Làng gốm Bát Tràng hình thành từ thời nhà Lý (khoảng thế kỷ XIV), nằm bên bờ sông Hồng thuộc huyện Gia Lâm, Hà Nội. Trải qua hơn 700 năm phát triển, Bát Tràng đã trở thành biểu tượng tinh hoa của nghệ thuật gốm sứ truyền thống Việt Nam.');
-  const [highlights, setHighlights] = useState('Gốm men rạn cổ, Gốm men ngọc, Lò bầu truyền thống, Khu chợ gốm sầm uất.');
+  const [villageData, setVillageData] = useState(null);
+  const [name, setName] = useState('');
+  const [history, setHistory] = useState('');
+  const [highlights, setHighlights] = useState('');
   const [saved, setSaved] = useState(false);
   const [loading, setLoading] = useState(false);
   const [villageId, setVillageId] = useState(1);
 
   useEffect(() => {
-    // Tải thông tin làng nghề đầu tiên từ Database SQL Server qua API
     const loadVillageData = async () => {
       setLoading(true);
       try {
         const list = await getDanhSachLangNghe();
         if (list && list.length > 0) {
           const firstVillage = list[0];
-          setVillageId(firstVillage.maLangNghe || firstVillage.MaLangNghe || 1);
-          if (firstVillage.tenLangNghe || firstVillage.TenLangNghe) {
-            setName(firstVillage.tenLangNghe || firstVillage.TenLangNghe);
-          }
-          if (firstVillage.lichSuHinhThanh || firstVillage.LichSuHinhThanh) {
-            setHistory(firstVillage.lichSuHinhThanh || firstVillage.LichSuHinhThanh);
-          }
-          if (firstVillage.gioiThieuNgan || firstVillage.GioiThieuNgan) {
-            setHighlights(firstVillage.gioiThieuNgan || firstVillage.GioiThieuNgan);
-          }
+          setVillageData(firstVillage);
+          const id = firstVillage.maLangNghe || firstVillage.MaLangNghe || 1;
+          setVillageId(id);
+          setName(firstVillage.tenLangNghe || firstVillage.TenLangNghe || '');
+          setHistory(firstVillage.lichSuHinhThanh || firstVillage.LichSuHinhThanh || '');
+          setHighlights(firstVillage.gioiThieuNgan || firstVillage.GioiThieuNgan || '');
+        } else {
+          setName('');
+          setHistory('');
+          setHighlights('');
         }
       } catch (err) {
-        console.warn('Sử dụng dữ liệu mặc định do chưa kết nối được Backend:', err);
+        console.warn('Lỗi kết nối khi nạp thông tin làng nghề từ SQL Server:', err);
       } finally {
         setLoading(false);
       }
@@ -44,35 +43,37 @@ export default function ThongTinLangNghe1() {
   const handleSave = async (e) => {
     e.preventDefault();
     try {
-      // Gửi request cập nhật sang Backend ASP.NET Core (nếu Backend đang chạy)
-      await apiClient.post('/LangNghe', {
+      const updatedData = {
+        ...(villageData || {}),
         MaLangNghe: villageId,
         TenLangNghe: name,
         LichSuHinhThanh: history,
         GioiThieuNgan: highlights,
-        DuongDanSlug: 'lang-gom-bat-trang',
-        TinhThanh: 'Hà Nội',
-        DiaChiCuThe: 'Xã Bát Tràng, Huyện Gia Lâm, Hà Nội',
-        ViDo: 20.9716,
-        KinhDo: 105.9224,
-        AnhBia: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=200'
-      });
+        DuongDanSlug: villageData?.duongDanSlug || villageData?.DuongDanSlug || 'lang-nghe-viet',
+        TinhThanh: villageData?.tinhThanh || villageData?.TinhThanh || 'Hà Nội',
+        DiaChiCuThe: villageData?.diaChiCuThe || villageData?.DiaChiCuThe || '',
+        ViDo: villageData?.viDo ?? villageData?.ViDo ?? 20.0,
+        KinhDo: villageData?.kinhDo ?? villageData?.KinhDo ?? 105.0
+      };
+
+      await capNhatLangNghe(villageId, updatedData);
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
     } catch (err) {
-      console.log('Đã lưu cục bộ vào trạng thái Frontend');
+      console.error('Lỗi khi cập nhật SQL Server:', err);
+      alert('Không thể cập nhật thông tin lên SQL Server. Vui lòng kiểm tra kết nối API.');
     }
-    setSaved(true);
-    setTimeout(() => setSaved(false), 2000);
   };
 
   return (
     <div className="vl1-main">
       <div className="vl1-header">
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%' }}>
           <div>
             <h1 className="vl1-title">Giới thiệu &amp; Lịch sử Làng nghề (Phần 1)</h1>
-            <p className="vl1-subtitle">Quản lý nội dung giới thiệu tổng quát, nguồn gốc và lịch sử phát triển của làng nghề</p>
+            <p className="vl1-subtitle">Quản lý nội dung giới thiệu tổng quát, nguồn gốc và lịch sử phát triển của làng nghề trong CSDL</p>
           </div>
-          {loading && <span style={{ color: '#ea580c', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem' }}><RefreshCw className="spin" size={16}/> Đang tải từ SQL Server...</span>}
+          {loading && <span style={{ color: '#ea580c', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.9rem' }}><RefreshCw className="spin" size={16}/> Đang nạp từ SQL Server...</span>}
         </div>
       </div>
 
@@ -80,27 +81,44 @@ export default function ThongTinLangNghe1() {
         <form onSubmit={handleSave}>
           <div className="vl1-form-group">
             <label>Tên Làng nghề truyền thống</label>
-            <input type="text" value={name} onChange={(e) => setName(e.target.value)} required />
+            <input 
+              type="text" 
+              value={name} 
+              onChange={(e) => setName(e.target.value)} 
+              placeholder="Nhập tên làng nghề..." 
+              required 
+            />
           </div>
 
           <div className="vl1-form-group">
             <label>Lịch sử hình thành &amp; phát triển</label>
-            <textarea rows="6" value={history} onChange={(e) => setHistory(e.target.value)} required />
+            <textarea 
+              rows="6" 
+              value={history} 
+              onChange={(e) => setHistory(e.target.value)} 
+              placeholder="Nhập lịch sử làng nghề..." 
+              required 
+            />
           </div>
 
           <div className="vl1-form-group">
             <label>Đặc trưng tinh hoa sản phẩm (Cách nhau bởi dấu phẩy)</label>
-            <input type="text" value={highlights} onChange={(e) => setHighlights(e.target.value)} />
+            <input 
+              type="text" 
+              value={highlights} 
+              onChange={(e) => setHighlights(e.target.value)} 
+              placeholder="Ví dụ: Gốm men rạn cổ, Gốm men ngọc..." 
+            />
           </div>
 
           <button type="submit" className="vl1-btn-save">
             {saved ? (
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                <Check size={18} /> Đã lưu thông tin vào SQL Server &amp; hệ thống!
+                <Check size={18} /> Đã cập nhật thông tin vào SQL Server thành công!
               </span>
             ) : (
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: '6px' }}>
-                <Save size={18} /> Lưu thay đổi lên Database
+                <Save size={18} /> Lưu thay đổi lên SQL Server
               </span>
             )}
           </button>

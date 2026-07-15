@@ -79,4 +79,47 @@ export const xoaLangNghe = async (id) => {
   }
 };
 
+// API Hình ảnh Làng nghề
+export const getDanhSachHinhAnh = async () => {
+  const response = await apiClient.get('/HinhAnhLangNghe');
+  return response.data;
+};
+
+export const getDanhSachHinhAnhByVillage = async (maLangNghe) => {
+  const response = await apiClient.get(`/HinhAnhLangNghe/byVillage/${maLangNghe}`);
+  return response.data;
+};
+
+export const themHinhAnhLangNghe = async (data) => {
+  const response = await apiClient.post('/HinhAnhLangNghe', data);
+  return response.data;
+};
+
+export const xoaHinhAnhLangNghe = async (id) => {
+  await apiClient.delete(`/HinhAnhLangNghe/${id}`);
+  return true;
+};
+
+// API Video Làng nghề
+export const getDanhSachVideo = async () => {
+  const response = await apiClient.get('/VideoLangNghe');
+  return response.data;
+};
+
+export const getDanhSachVideoByVillage = async (maLangNghe) => {
+  const response = await apiClient.get(`/VideoLangNghe/byVillage/${maLangNghe}`);
+  return response.data;
+};
+
+export const themVideoLangNghe = async (data) => {
+  const response = await apiClient.post('/VideoLangNghe', data);
+  return response.data;
+};
+
+export const xoaVideoLangNghe = async (id) => {
+  await apiClient.delete(`/VideoLangNghe/${id}`);
+  return true;
+};
+
 export default apiClient;
+

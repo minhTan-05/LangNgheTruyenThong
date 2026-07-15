@@ -52,7 +52,7 @@ namespace AptWatchApi.Migrations
 
                     b.HasIndex("MaLangNghe");
 
-                    b.ToTable("DanhGiaLangNghe");
+                    b.ToTable("DanhGiaLangNghe", (string)null);
                 });
 
             modelBuilder.Entity("AptWatchApi.Models.LangNghe", b =>
@@ -128,7 +128,7 @@ namespace AptWatchApi.Migrations
 
                     b.HasIndex("MaNhomNghe");
 
-                    b.ToTable("LangNghe");
+                    b.ToTable("LangNghe", (string)null);
                 });
 
             modelBuilder.Entity("AptWatchApi.Models.NgheNhan", b =>
@@ -170,7 +170,7 @@ namespace AptWatchApi.Migrations
 
                     b.HasIndex("MaLangNghe");
 
-                    b.ToTable("NgheNhan");
+                    b.ToTable("NgheNhan", (string)null);
                 });
 
             modelBuilder.Entity("AptWatchApi.Models.NhomNghe", b =>
@@ -197,7 +197,7 @@ namespace AptWatchApi.Migrations
 
                     b.HasKey("MaNhomNghe");
 
-                    b.ToTable("NhomNghe");
+                    b.ToTable("NhomNghe", (string)null);
                 });
 
             modelBuilder.Entity("AptWatchApi.Models.SanPham", b =>
@@ -254,7 +254,7 @@ namespace AptWatchApi.Migrations
 
                     b.HasIndex("MaNgheNhan");
 
-                    b.ToTable("SanPham");
+                    b.ToTable("SanPham", (string)null);
                 });
 
             modelBuilder.Entity("AptWatchApi.Models.ThuyetMinhAudio", b =>
@@ -293,7 +293,7 @@ namespace AptWatchApi.Migrations
 
                     b.HasIndex("MaLangNghe");
 
-                    b.ToTable("ThuyetMinhAudio");
+                    b.ToTable("ThuyetMinhAudio", (string)null);
                 });
 
             modelBuilder.Entity("AptWatchApi.Models.TourTraiNghiem", b =>
@@ -335,7 +335,7 @@ namespace AptWatchApi.Migrations
 
                     b.HasIndex("MaNgheNhan");
 
-                    b.ToTable("TourTraiNghiem");
+                    b.ToTable("TourTraiNghiem", (string)null);
                 });
 
             modelBuilder.Entity("AptWatchApi.Models.DanhGiaLangNghe", b =>
