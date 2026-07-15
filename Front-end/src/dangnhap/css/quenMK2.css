@@ -1,38 +1,40 @@
-.otp-container { display: flex; min-height: 100vh; font-family: -apple-system, sans-serif; background: #f6f4ee; }
+.otp-container { display: flex; height: 100vh; width: 100vw; overflow: hidden; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; background: #f6f4ee; }
 
 /* CỘT TRÁI */
-.otp-left { flex: 1; background: #555555; display: flex; align-items: center; justify-content: center; padding: 3rem; }
-.otp-logo-box { width: 72px; height: 72px; background: #cda846; border-radius: 20px; display: flex; align-items: center; justify-content: center; margin-bottom: 2rem; }
-.otp-title { font-size: 2.5rem; color: white; margin: 0 0 1rem 0; line-height: 1.2; }
-.otp-desc { font-size: 1rem; color: #a1a1aa; margin-bottom: 3rem; }
+.otp-left { flex: 1.1; background: #555555; display: flex; align-items: center; justify-content: center; padding: 2rem; }
+.otp-logo-box { width: 54px; height: 54px; background: #cda846; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem; }
+.otp-title { font-size: 2.2rem; color: white; margin: 0 0 0.75rem 0; line-height: 1.2; font-weight: 700; }
+.otp-desc { font-size: 0.9rem; color: #a1a1aa; margin-bottom: 2rem; line-height: 1.5; }
 
 /* Stepper */
-.otp-steps { display: flex; flex-direction: column; gap: 2rem; }
-.otp-step { display: flex; align-items: center; gap: 1rem; color: #71717a; font-weight: 500; }
-.step-circle, .step-check { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.otp-steps { display: flex; flex-direction: column; gap: 1.25rem; }
+.otp-step { display: flex; align-items: center; gap: 0.8rem; color: #71717a; font-weight: 500; font-size: 0.9rem; }
+.step-circle, .step-check { width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; }
 .step-circle { border: 2px solid #71717a; }
 .step-check { background: #10b981; color: white; }
 .otp-step.active { color: white; }
 .otp-step.active .step-circle { background: #cda846; border-color: #cda846; }
 
 /* CỘT PHẢI */
-.otp-right { flex: 1; display: flex; align-items: center; justify-content: center; padding: 2rem; }
-.otp-form-wrapper { width: 100%; max-width: 480px; }
-.back-link { display: flex; align-items: center; gap: 8px; color: #9ca3af; text-decoration: none; margin-bottom: 2rem; font-size: 0.9rem; }
+.otp-right { flex: 1; display: flex; align-items: center; justify-content: center; padding: 1.5rem; height: 100vh; overflow-y: auto; }
+.otp-form-wrapper { width: 100%; max-width: 430px; margin: auto 0; }
+.back-link { display: flex; align-items: center; gap: 6px; color: #9ca3af; text-decoration: none; margin-bottom: 1rem; font-size: 0.82rem; }
+.back-link:hover { color: #4b5563; }
 
-.otp-card { background: white; border-radius: 24px; padding: 3rem; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
-.otp-icon-box { background: #eff6ff; width: 64px; height: 64px; border-radius: 16px; display: flex; align-items: center; justify-content: center; margin-bottom: 1.5rem; }
-.otp-form-title { font-size: 1.8rem; color: #374151; margin: 0 0 1rem 0; }
-.otp-form-subtitle { color: #6b7280; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1.5rem; }
+.otp-card { background: white; border-radius: 20px; padding: 1.8rem 2rem; box-shadow: 0 8px 30px rgba(0,0,0,0.05); }
+.otp-icon-box { background: #eff6ff; width: 54px; height: 54px; border-radius: 14px; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+.otp-form-title { font-size: 1.5rem; color: #374151; margin: 0 0 0.5rem 0; font-weight: 700; }
+.otp-form-subtitle { color: #6b7280; font-size: 0.85rem; line-height: 1.4; margin-bottom: 1.2rem; }
 
 /* Demo box */
-.otp-demo-box { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; padding: 1rem; border-radius: 12px; margin-bottom: 2rem; display: flex; gap: 10px; font-size: 0.85rem; }
+.otp-demo-box { background: #eff6ff; border: 1px solid #bfdbfe; color: #1e40af; padding: 0.75rem 1rem; border-radius: 10px; margin-bottom: 1.25rem; display: flex; gap: 8px; font-size: 0.8rem; align-items: center; }
 
 /* OTP Inputs */
-.otp-label { font-weight: 600; color: #374151; margin-bottom: 1rem; }
-.otp-inputs { display: flex; gap: 12px; margin-bottom: 1.5rem; }
-.otp-inputs input { width: 56px; height: 64px; background: #eae5d9; border: 1px solid #d1d5db; border-radius: 12px; text-align: center; font-size: 1.5rem; font-weight: bold; outline: none; }
+.otp-label { font-weight: 600; color: #374151; margin-bottom: 0.75rem; font-size: 0.85rem; }
+.otp-inputs { display: flex; gap: 8px; margin-bottom: 1.25rem; justify-content: center; }
+.otp-inputs input { width: 46px; height: 52px; background: #eae5d9; border: 1px solid #d1d5db; border-radius: 10px; text-align: center; font-size: 1.3rem; font-weight: bold; outline: none; transition: 0.2s; }
 .otp-inputs input:focus { border-color: #cda846; }
 
-.resend-text { color: #6b7280; font-size: 0.9rem; margin-bottom: 1.5rem; }
-.btn-verify { width: 100%; background: #b45309; color: white; border: none; padding: 16px; border-radius: 12px; font-weight: 600; cursor: pointer; }
+.resend-text { color: #6b7280; font-size: 0.82rem; margin-bottom: 1.25rem; text-align: center; }
+.btn-verify { width: 100%; background: #b45309; color: white; border: none; padding: 10px; height: 42px; border-radius: 10px; font-weight: 600; font-size: 0.92rem; cursor: pointer; transition: 0.2s; }
+.btn-verify:hover { background: #92400e; }

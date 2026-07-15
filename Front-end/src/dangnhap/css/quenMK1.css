@@ -1,65 +1,70 @@
 .fp-container {
   display: flex;
-  min-height: 100vh;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 
 /* CỘT TRÁI */
 .fp-left {
-  flex: 1;
-  background-color: #555555; /* Màu xám đậm */
+  flex: 1.1;
+  background-color: #555555;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 3rem;
+  padding: 2rem;
 }
 
 .fp-logo-box {
-  width: 72px; height: 72px; background: #cda846; border-radius: 20px;
-  display: flex; align-items: center; justify-content: center; margin-bottom: 2rem;
+  width: 54px; height: 54px; background: #cda846; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center; margin-bottom: 1.25rem;
 }
 
-.fp-title { font-size: 2.5rem; color: white; margin: 0 0 1rem 0; line-height: 1.2; }
-.fp-desc { font-size: 1rem; color: #a1a1aa; margin-bottom: 3rem; }
+.fp-title { font-size: 2.2rem; color: white; margin: 0 0 0.75rem 0; line-height: 1.2; font-weight: 700; }
+.fp-desc { font-size: 0.9rem; color: #a1a1aa; margin-bottom: 2rem; line-height: 1.5; }
 
 /* Steps */
-.fp-steps { display: flex; flex-direction: column; gap: 2rem; }
-.fp-step { display: flex; align-items: center; gap: 1rem; color: #71717a; font-weight: 500; }
+.fp-steps { display: flex; flex-direction: column; gap: 1.25rem; }
+.fp-step { display: flex; align-items: center; gap: 0.8rem; color: #71717a; font-weight: 500; font-size: 0.9rem; }
 .step-circle { 
-  width: 32px; height: 32px; border-radius: 50%; border: 2px solid #71717a;
-  display: flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%; border: 2px solid #71717a;
+  display: flex; align-items: center; justify-content: center; font-size: 0.8rem;
 }
 .fp-step.active { color: white; }
 .fp-step.active .step-circle { background: #cda846; border-color: #cda846; color: white; }
 
 /* CỘT PHẢI */
 .fp-right {
-  flex: 1; background: #f6f4ee; display: flex; align-items: center; justify-content: center; padding: 2rem;
+  flex: 1; background: #f6f4ee; display: flex; align-items: center; justify-content: center; padding: 1.5rem;
+  height: 100vh; overflow-y: auto;
 }
 
-.fp-form-wrapper { width: 100%; max-width: 480px; }
+.fp-form-wrapper { width: 100%; max-width: 430px; margin: auto 0; }
 .back-login-link { 
-  display: flex; align-items: center; gap: 8px; color: #9ca3af; 
-  text-decoration: none; margin-bottom: 2rem; font-size: 0.9rem;
+  display: flex; align-items: center; gap: 6px; color: #9ca3af; 
+  text-decoration: none; margin-bottom: 1rem; font-size: 0.82rem;
 }
+.back-login-link:hover { color: #4b5563; }
 
-.fp-card { background: white; border-radius: 24px; padding: 3rem; box-shadow: 0 10px 40px rgba(0,0,0,0.05); }
-.fp-icon-mail { margin-bottom: 1.5rem; }
-.fp-form-title { margin: 0 0 8px 0; font-size: 1.8rem; color: #374151; }
-.fp-form-subtitle { margin: 0 0 2rem 0; color: #6b7280; font-size: 0.95rem; line-height: 1.5; }
+.fp-card { background: white; border-radius: 20px; padding: 1.8rem 2rem; box-shadow: 0 8px 30px rgba(0,0,0,0.05); }
+.fp-icon-mail { margin-bottom: 1rem; }
+.fp-form-title { margin: 0 0 4px 0; font-size: 1.5rem; color: #374151; font-weight: 700; }
+.fp-form-subtitle { margin: 0 0 1.5rem 0; color: #6b7280; font-size: 0.85rem; line-height: 1.5; }
 
 /* Input & Buttons */
-.input-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 2rem; }
-.input-group label { font-size: 0.9rem; font-weight: 600; color: #374151; }
+.input-group { display: flex; flex-direction: column; gap: 4px; margin-bottom: 1.25rem; }
+.input-group label { font-size: 0.82rem; font-weight: 600; color: #374151; }
 .input-group input { 
-  background: #eae5d9; border: none; padding: 14px 16px; border-radius: 12px; font-size: 0.95rem; 
+  background: #eae5d9; border: 1px solid transparent; padding: 10px 14px; height: 40px; border-radius: 10px; font-size: 0.88rem; outline: none; box-sizing: border-box;
 }
+.input-group input:focus { border-color: #cda846; }
 
 .btn-send { 
-  width: 100%; background: #b45309; color: white; border: none; padding: 16px; 
-  border-radius: 12px; font-weight: 600; cursor: pointer; transition: 0.2s;
+  width: 100%; background: #b45309; color: white; border: none; padding: 10px; height: 42px;
+  border-radius: 10px; font-weight: 600; font-size: 0.92rem; cursor: pointer; transition: 0.2s;
 }
 .btn-send:hover { background: #92400e; }
 
-.login-text { text-align: center; margin-top: 2rem; color: #6b7280; font-size: 0.9rem; }
+.login-text { text-align: center; margin-top: 1.2rem; color: #6b7280; font-size: 0.85rem; }
 .login-text a { color: #b45309; font-weight: 600; text-decoration: none; }

@@ -42,43 +42,33 @@ export default function RegisterPage({ setActiveTab }) {
         <div className="register-form-wrapper">
           <div className="register-card">
             <h2 className="form-title">Tạo tài khoản mới</h2>
-            <p className="form-subtitle">Điền thông tin bên dưới để đăng ký.</p>
+            <p className="form-subtitle">Điền thông tin bên dưới để đăng ký nhanh.</p>
 
             {/* Role Selection */}
             <div className="role-selection">
+              <span className="role-label-text">Bạn là:</span>
               <button 
                 type="button" 
-                className={`role-card ${selectedRole === 'customer' ? 'active' : ''}`}
+                className={`role-pill-btn ${selectedRole === 'customer' ? 'active' : ''}`}
                 onClick={() => setSelectedRole('customer')}
               >
-                <div className="role-icon customer"><User size={24} /></div>
-                <h4>Khách hàng</h4>
-                <p>Mua sắm & khám phá</p>
+                <User size={16} /> Khách hàng
               </button>
-              
               <button 
                 type="button" 
-                className={`role-card ${selectedRole === 'manager' ? 'active' : ''}`}
+                className={`role-pill-btn ${selectedRole === 'manager' ? 'active' : ''}`}
                 onClick={() => setSelectedRole('manager')}
               >
-                <div className="role-icon manager"><Store size={24} /></div>
-                <h4>Quản lý LN</h4>
-                <p>Quản lý làng nghề</p>
+                <Store size={16} /> Quản lý Làng nghề
               </button>
             </div>
 
             {/* Form Inputs */}
-            {/* Form Inputs */}
             <form className="register-form" onSubmit={handleRegisterSubmit}>
-              <div className="input-group full-width">
-                <label>Họ và tên <span className="required">*</span></label>
-                <input type="text" placeholder="Nguyễn Văn A" required />
-              </div>
-
               <div className="input-row">
                 <div className="input-group">
-                  <label>Email <span className="required">*</span></label>
-                  <input type="email" placeholder="example@email.com" required />
+                  <label>Họ và tên <span className="required">*</span></label>
+                  <input type="text" placeholder="Nguyễn Văn A" required />
                 </div>
                 <div className="input-group">
                   <label>Số điện thoại</label>
@@ -87,30 +77,36 @@ export default function RegisterPage({ setActiveTab }) {
               </div>
 
               <div className="input-group full-width">
-                <label>Mật khẩu <span className="required">*</span></label>
-                <div className="password-wrapper">
-                  <input 
-                    type={showPassword ? "text" : "password"} 
-                    placeholder="••••••••" 
-                    required
-                  />
-                  <button type="button" className="btn-toggle-password" onClick={() => setShowPassword(!showPassword)}>
-                    {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
-                </div>
+                <label>Email <span className="required">*</span></label>
+                <input type="email" placeholder="example@email.com" required />
               </div>
 
-              <div className="input-group full-width">
-                <label>Xác nhận mật khẩu <span className="required">*</span></label>
-                <div className="password-wrapper">
-                  <input 
-                    type={showConfirmPassword ? "text" : "password"} 
-                    placeholder="••••••••" 
-                    required
-                  />
-                  <button type="button" className="btn-toggle-password" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
-                    {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                  </button>
+              <div className="input-row">
+                <div className="input-group">
+                  <label>Mật khẩu <span className="required">*</span></label>
+                  <div className="password-wrapper">
+                    <input 
+                      type={showPassword ? "text" : "password"} 
+                      placeholder="••••••••" 
+                      required
+                    />
+                    <button type="button" className="btn-toggle-password" onClick={() => setShowPassword(!showPassword)}>
+                      {showPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                    </button>
+                  </div>
+                </div>
+                <div className="input-group">
+                  <label>Xác nhận mật khẩu <span className="required">*</span></label>
+                  <div className="password-wrapper">
+                    <input 
+                      type={showConfirmPassword ? "text" : "password"} 
+                      placeholder="••••••••" 
+                      required
+                    />
+                    <button type="button" className="btn-toggle-password" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                      {showConfirmPassword ? <EyeOff size={16} /> : <Eye size={16} />}
+                    </button>
+                  </div>
                 </div>
               </div>
 
@@ -119,25 +115,25 @@ export default function RegisterPage({ setActiveTab }) {
                 <label className="custom-checkbox-label">
                   <input type="checkbox" required />
                   <span className="checkbox-text">
-                    Tôi đồng ý với <a href="#terms" onClick={(e)=>e.preventDefault()}>Điều khoản sử dụng</a> và <a href="#privacy" onClick={(e)=>e.preventDefault()}>Chính sách bảo mật</a> <span className="required">*</span>
+                    Tôi đồng ý với <a href="#terms" onClick={(e)=>e.preventDefault()}>Điều khoản</a> & <a href="#privacy" onClick={(e)=>e.preventDefault()}>Chính sách bảo mật</a> <span className="required">*</span>
                   </span>
                 </label>
                 
                 <label className="custom-checkbox-label">
                   <input type="checkbox" />
                   <span className="checkbox-text">
-                    Nhận thông tin khuyến mãi và tin tức về làng nghề qua email
+                    Nhận thông tin khuyến mãi & tin tức làng nghề qua email
                   </span>
                 </label>
               </div>
 
               <button type="submit" className="btn-submit">
-                Tạo tài khoản <ArrowRight size={18} />
+                Tạo tài khoản <ArrowRight size={16} />
               </button>
             </form>
 
             <p className="login-text">
-              Đã có tài khoản? <a href="#login" onClick={(e) => { e.preventDefault(); if(setActiveTab) setActiveTab('login'); }}>Đăng nhập</a>
+              Đã có tài khoản? <a href="#login" onClick={(e) => { e.preventDefault(); if(setActiveTab) setActiveTab('login'); }}>Đăng nhập ngay</a>
             </p>
           </div>
 
