@@ -1,13 +1,44 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/chitietsanpham.css';
 import { 
   MapPin, Star, Minus, Plus, ShoppingCart, Heart, Share2, 
   Truck, ShieldCheck, ArrowLeft, Check 
 } from 'lucide-react';
+import { getDanhSachSanPham } from '../../API/apiAdmin';
 
-export default function ChiTietSanPham({ product, setActiveTab, onAddToCart }) {
+export default function ChiTietSanPham({ product, setActiveTab, onAddToCart, onSelectProduct }) {
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
+  const [relatedProducts, setRelatedProducts] = useState([
+    { id: 2, name: 'Khăn lụa tơ tằm thêu tay', village: 'Làng lụa Vạn Phúc', price: '850.000đ', img: 'https://images.unsplash.com/photo-1606231140504-b6dd565cc5fb?q=80&w=400&auto=format&fit=crop' },
+    { id: 5, name: 'Bộ ấm trà gốm Chu Đậu', village: 'Làng gốm Bát Tràng', price: '1.200.000đ', img: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop' },
+    { id: 7, name: 'Đĩa gốm sứ trang trí', village: 'Làng gốm Bát Tràng', price: '650.000đ', img: 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=400&auto=format&fit=crop' }
+  ]);
+
+  useEffect(() => {
+    const fetchRelated = async () => {
+      try {
+        const all = await getDanhSachSanPham();
+        if (all && all.length > 0) {
+          const mapped = all.map(p => ({
+            id: p.maSanPham || p.MaSanPham,
+            name: p.tenSanPham || p.TenSanPham,
+            village: p.langNghe?.tenLangNghe || 'Làng nghề Việt Nam',
+            price: p.giaBan || p.GiaBan ? Number(p.giaBan || p.GiaBan).toLocaleString('vi-VN') + 'đ' : '450.000đ',
+            img: p.anhDaiDien || p.AnhDaiDien || 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=400&auto=format&fit=crop',
+            category: p.langNghe?.nhomNghe?.tenNhomNghe || 'Gốm sứ',
+            desc: p.moTa || p.MoTa
+          })).filter(p => p.id !== (product?.id || 1));
+          if (mapped.length > 0) {
+            setRelatedProducts(mapped.slice(0, 4));
+          }
+        }
+      } catch (err) {
+        console.warn('Sử dụng sản phẩm mẫu cho sản phẩm tương tự do lỗi API:', err);
+      }
+    };
+    fetchRelated();
+  }, [product]);
 
   const item = product || {
     id: 1,
@@ -49,10 +80,11 @@ export default function ChiTietSanPham({ product, setActiveTab, onAddToCart }) {
         {/* MAIN INFO GRID */}
         <div className="pdp-main-info">
           
-          {/* CỘT TRÁI: ẢNH */}
-          <div>
-            <div className="pdp-main-img">
-              <img src={activeImage} alt={item.name} />
+          {/* LEFT: IMAGES */}
+          <div className="pdp-gallery">
+            <div className="pdp-main-image-box">
+              <img src={activeImage || item.img} alt={item.name} />
+              <button className="pdp-wishlist-btn"><Heart size={20} /></button>
             </div>
             <div className="pdp-thumbnails">
               {thumbnails.map((thumb, idx) => (
@@ -61,17 +93,15 @@ export default function ChiTietSanPham({ product, setActiveTab, onAddToCart }) {
                   className={`pdp-thumb-item ${activeImage === thumb ? 'active' : ''}`}
                   onClick={() => setActiveImage(thumb)}
                 >
-                  <img src={thumb} alt="thumbnail" />
+                  <img src={thumb} alt={`Thumb ${idx}`} />
                 </div>
               ))}
             </div>
           </div>
 
-          {/* CỘT PHẢI: CHI TIẾT */}
-          <div>
-            <div className="pdp-location">
-              <MapPin size={16} /> {item.village}
-            </div>
+          {/* RIGHT: DETAILS */}
+          <div className="pdp-details">
+            <span className="pdp-category-badge">{item.category || 'Gốm sứ'}</span>
             <h1 className="pdp-title">{item.name}</h1>
 
             <div className="pdp-rating-row">
@@ -214,17 +244,15 @@ export default function ChiTietSanPham({ product, setActiveTab, onAddToCart }) {
         <section className="pdp-related-section">
           <h3 className="pdp-section-title">Sản phẩm tương tự</h3>
           <div className="pdp-related-grid">
-            {[
-              { id: 2, name: 'Khăn lụa tơ tằm thêu tay', village: 'Làng lụa Vạn Phúc', price: '850.000đ', img: 'https://images.unsplash.com/photo-1606231140504-b6dd565cc5fb?q=80&w=400&auto=format&fit=crop' },
-              { id: 5, name: 'Bộ ấm trà gốm Chu Đậu', village: 'Làng gốm Bát Tràng', price: '1.200.000đ', img: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop' },
-              { id: 7, name: 'Đĩa gốm sứ trang trí', village: 'Làng gốm Bát Tràng', price: '650.000đ', img: 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=400&auto=format&fit=crop' }
-            ].map((relItem) => (
+            {relatedProducts.map((relItem) => (
               <div 
                 key={relItem.id} 
                 className="pdp-related-card"
                 onClick={() => {
+                  if (onSelectProduct) onSelectProduct(relItem);
                   window.scrollTo({ top: 0, behavior: 'smooth' });
                 }}
+                style={{ cursor: 'pointer' }}
               >
                 <div className="pdp-rc-img">
                   <img src={relItem.img} alt={relItem.name} />

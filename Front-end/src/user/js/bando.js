@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/bando.css';
 import { 
   Filter, ChevronRight, MapPin, Star, Search
 } from 'lucide-react';
 import VietnamMap from '../../layout/js/VietNamMap';
+import { getDanhSachLangNghe } from '../../API/apiLangNghe';
 
-const villagesList = [
+const fallbackVillagesList = [
   { id: 1, name: 'Làng gốm Bát Tràng', location: 'Hà Nội', tag: 'Gốm sứ', rating: '4.8', img: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=100&auto=format&fit=crop', isActive: false },
   { id: 2, name: 'Làng lụa Vạn Phúc', location: 'Hà Nội', tag: 'Dệt may', rating: '4.7', img: 'https://images.unsplash.com/photo-1584346762319-3c306d15d656?q=80&w=100&auto=format&fit=crop', isActive: false },
   { id: 3, name: 'Làng mộc Kim Bồng', location: 'Quảng Nam', tag: 'Mộc', rating: '4.9', img: 'https://images.unsplash.com/photo-1605335198006-258dcb1f416c?q=80&w=100&auto=format&fit=crop', isActive: true },
@@ -13,6 +14,38 @@ const villagesList = [
 ];
 
 export default function MapPage({ setActiveTab, onSelectVillage }) {
+  const [villagesList, setVillagesList] = useState(fallbackVillagesList);
+  const [searchQuery, setSearchQuery] = useState('');
+
+  useEffect(() => {
+    const fetchVillages = async () => {
+      try {
+        const data = await getDanhSachLangNghe();
+        if (data && data.length > 0) {
+          setVillagesList(data.map(v => ({
+            id: v.maLangNghe || v.MaLangNghe,
+            name: v.tenLangNghe || v.TenLangNghe,
+            location: v.tinhThanh || v.TinhThanh || 'Việt Nam',
+            tag: v.nhomNghe?.tenNhomNghe || v.NhomNghe?.TenNhomNghe || 'Gốm sứ',
+            rating: Number(v.diemDanhGia || v.DiemDanhGia || 4.8).toFixed(1),
+            img: v.anhBia || v.AnhBia || 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=100&auto=format&fit=crop',
+            desc: v.gioiThieu || v.GioiThieu || v.lSTruyenThong || v.LSTruyenThong,
+            lat: v.viDo || v.ViDo,
+            lng: v.kinhDo || v.KinhDo
+          })));
+        }
+      } catch (err) {
+        console.warn('Sử dụng danh sách làng nghề mẫu cho bản đồ do lỗi API:', err);
+      }
+    };
+    fetchVillages();
+  }, []);
+
+  const filteredVillages = villagesList.filter(v => 
+    v.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    v.location.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div className="map-page-wrapper" style={{ height: 'calc(100vh - 120px)' }}>
       
@@ -23,12 +56,18 @@ export default function MapPage({ setActiveTab, onSelectVillage }) {
         <aside className="map-sidebar">
           <div className="sidebar-header">
             <h2>Làng nghề</h2>
-            <span className="result-badge">4 kết quả</span>
+            <span className="result-badge">{filteredVillages.length} kết quả</span>
           </div>
 
           <div className="search-container" style={{ position: 'relative' }}>
             <Search size={16} style={{ position: 'absolute', left: '10px', top: '12px', color: '#9ca3af' }} />
-            <input type="text" placeholder="Tìm kiếm làng nghề..." style={{ paddingLeft: '32px' }} />
+            <input 
+              type="text" 
+              placeholder="Tìm kiếm làng nghề..." 
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              style={{ paddingLeft: '32px' }} 
+            />
           </div>
 
           <div className="filter-container">
@@ -40,7 +79,7 @@ export default function MapPage({ setActiveTab, onSelectVillage }) {
           </div>
 
           <div className="village-list">
-            {villagesList.map(village => (
+            {filteredVillages.map(village => (
               <div 
                 key={village.id} 
                 className={`list-item ${village.isActive ? 'active' : ''}`}
@@ -51,7 +90,7 @@ export default function MapPage({ setActiveTab, onSelectVillage }) {
                   <h3>{village.name}</h3>
                   <p className="item-location"><MapPin size={12}/> {village.location}</p>
                   <div className="item-meta">
-                    <span className={`tag tag-${village.tag.toLowerCase().replace(/ /g, '-')}`}>{village.tag}</span>
+                    <span className={`tag tag-${(village.tag || 'gốm-sứ').toLowerCase().replace(/ /g, '-')}`}>{village.tag}</span>
                     <span className="rating"><Star size={12} className="star-icon"/> {village.rating}</span>
                   </div>
                 </div>
