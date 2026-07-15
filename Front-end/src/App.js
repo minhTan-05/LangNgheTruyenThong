@@ -87,12 +87,14 @@ export default function App() {
             product={selectedProduct}
             setActiveTab={handleTabChange}
             onAddToCart={handleAddToCart}
+            onSelectProduct={handleSelectProduct}
           />
         )}
         {activeTab === 'village-detail' && (
           <ChiTietLangNghe 
             village={selectedVillage}
             setActiveTab={handleTabChange}
+            onSelectProduct={handleSelectProduct}
           />
         )}
         {activeTab === 'cart' && (

@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AptWatchApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fdb028fef7ee12b2337290eea603b4769a5b3e58")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+518e0d4a12a871d2410be96261793dfc4c02f9b9")]
 [assembly: System.Reflection.AssemblyProductAttribute("AptWatchApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AptWatchApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

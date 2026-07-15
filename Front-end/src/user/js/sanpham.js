@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/sanpham.css';
 import { SlidersHorizontal, ShoppingCart, ChevronDown, Check } from 'lucide-react';
+import { getDanhSachSanPham } from '../../API/apiAdmin';
 
 const categoriesList = ['Tất cả', 'Gốm sứ', 'Dệt may', 'Mộc', 'Kim hoàn', 'Đúc đồng', 'Thêu', 'Làng hoa', 'Bánh kẹo', 'Rèn', 'Khảm trai'];
 const priceRanges = ['Dưới 1 triệu', '1 - 5 triệu', '5 - 10 triệu', 'Trên 10 triệu'];
 
-const productsData = [
+const fallbackProductsData = [
   { id: 1, name: 'Bình hoa gốm men ngọc', village: 'Làng gốm Bát Tràng', price: '450.000đ', priceNum: 450000, category: 'Gốm sứ', img: 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=400&auto=format&fit=crop' },
   { id: 2, name: 'Khăn lụa tơ tằm thêu tay', village: 'Làng lụa Vạn Phúc', price: '850.000đ', priceNum: 850000, category: 'Dệt may', img: 'https://images.unsplash.com/photo-1606231140504-b6dd565cc5fb?q=80&w=400&auto=format&fit=crop' },
   { id: 3, name: 'Bàn thờ gỗ gụ chạm khắc', village: 'Làng mộc Kim Bồng', price: '15.000.000đ', priceNum: 15000000, category: 'Mộc', img: 'https://images.unsplash.com/photo-1592078615290-07fdef5239a5?q=80&w=400&auto=format&fit=crop' },
@@ -21,6 +22,30 @@ export default function SanPham({ selectedCategory = 'Tất cả', setSelectedCa
   const [activeCat, setActiveCat] = useState(selectedCategory || 'Tất cả');
   const [searchTerm, setSearchTerm] = useState('');
   const [addedId, setAddedId] = useState(null);
+  const [productsData, setProductsData] = useState(fallbackProductsData);
+
+  useEffect(() => {
+    const fetchProds = async () => {
+      try {
+        const list = await getDanhSachSanPham();
+        if (list && list.length > 0) {
+          setProductsData(list.map(p => ({
+            id: p.maSanPham || p.MaSanPham,
+            name: p.tenSanPham || p.TenSanPham,
+            village: p.langNghe?.tenLangNghe || 'Làng nghề Việt Nam',
+            price: p.giaBan || p.GiaBan ? Number(p.giaBan || p.GiaBan).toLocaleString('vi-VN') + 'đ' : '450.000đ',
+            priceNum: Number(p.giaBan || p.GiaBan || 450000),
+            category: p.langNghe?.nhomNghe?.tenNhomNghe || 'Gốm sứ',
+            img: p.anhDaiDien || p.AnhDaiDien || 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=400&auto=format&fit=crop',
+            desc: p.moTa || p.MoTa
+          })));
+        }
+      } catch (err) {
+        console.warn('Sử dụng sản phẩm mẫu do lỗi API:', err);
+      }
+    };
+    fetchProds();
+  }, []);
 
   const currentCategory = setSelectedCategory ? selectedCategory : activeCat;
   const handleCategoryClick = (cat) => {

@@ -1,6 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import '../css/trangchu.css';
 import { Map, Package, Eye, MapPin, Star, ShoppingCart, Check } from 'lucide-react';
+import { getDanhSachLangNghe } from '../../API/apiLangNghe';
+import { getDanhSachSanPham } from '../../API/apiAdmin';
 
 const stats = [
   { id: 1, icon: <Map className="icon-yellow" />, title: 'Tổng số làng nghề', value: '156' },
@@ -8,14 +10,14 @@ const stats = [
   { id: 3, icon: <Eye className="icon-gray" />, title: 'Lượt truy cập', value: '1.250.000' },
 ];
 
-const villages = [
+const fallbackVillages = [
   { id: 1, name: 'Làng gốm Bát Tràng', location: 'Hà Nội', desc: 'Làng nghề gốm sứ nổi tiếng với lịch sử hơn 700 năm', views: '15.420', rating: '4.8', tag: 'Gốm sứ', img: 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop' },
   { id: 2, name: 'Làng lụa Vạn Phúc', location: 'Hà Nội', desc: 'Làng dệt lụa tơ tằm truyền thống', views: '12.350', rating: '4.7', tag: 'Dệt may', img: 'https://images.unsplash.com/photo-1584346762319-3c306d15d656?q=80&w=400&auto=format&fit=crop' },
   { id: 3, name: 'Làng mộc Kim Bồng', location: 'Quảng Nam', desc: 'Làng nghề mộc truyền thống của xứ Quảng', views: '9.870', rating: '4.9', tag: 'Mộc', img: 'https://images.unsplash.com/photo-1605335198006-258dcb1f416c?q=80&w=400&auto=format&fit=crop' },
   { id: 4, name: 'Làng đúc đồng Đại Bái', location: 'Bắc Ninh', desc: 'Làng nghề đúc đồng lâu đời', views: '8.540', rating: '4.6', tag: 'Đúc đồng', img: 'https://images.unsplash.com/photo-1599583196884-60be78ee4b45?q=80&w=400&auto=format&fit=crop' },
 ];
 
-const products = [
+const fallbackProducts = [
   { id: 1, name: 'Bình hoa gốm men ngọc', village: 'Làng gốm Bát Tràng', price: '450.000đ', category: 'Gốm sứ', img: 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=400&auto=format&fit=crop', rating: '4.9 (128 đánh giá)' },
   { id: 2, name: 'Khăn lụa tơ tằm thêu tay', village: 'Làng lụa Vạn Phúc', price: '850.000đ', category: 'Dệt may', img: 'https://images.unsplash.com/photo-1606231140504-b6dd565cc5fb?q=80&w=400&auto=format&fit=crop', rating: '4.8 (95 đánh giá)' },
   { id: 3, name: 'Bàn thờ gỗ gụ chạm', village: 'Làng mộc Kim Bồng', price: '15.000.000đ', category: 'Mộc', img: 'https://images.unsplash.com/photo-1592078615290-07fdef5239a5?q=80&w=400&auto=format&fit=crop', rating: '5.0 (42 đánh giá)' },
@@ -25,6 +27,52 @@ const products = [
 export default function TrangChu({ setActiveTab, onAddToCart, onSelectProduct, onSelectVillage }) {
   const [addedId, setAddedId] = useState(null);
   const [keyword, setKeyword] = useState('');
+  const [villages, setVillages] = useState(fallbackVillages);
+  const [products, setProducts] = useState(fallbackProducts);
+
+  useEffect(() => {
+    const fetchHomeData = async () => {
+      try {
+        const vList = await getDanhSachLangNghe();
+        if (vList && vList.length > 0) {
+          setVillages(vList.map(item => ({
+            id: item.maLangNghe || item.MaLangNghe,
+            name: item.tenLangNghe || item.TenLangNghe,
+            location: item.tinhThanh || item.TinhThanh || 'Việt Nam',
+            desc: item.gioiThieu || item.GioiThieu || item.lSTruyenThong || item.LSTruyenThong || 'Làng nghề truyền thống nổi tiếng với lịch sử lâu đời',
+            views: item.luotXem || item.LuotXem || '15.420',
+            rating: Number(item.diemDanhGia || item.DiemDanhGia || 4.8).toFixed(1),
+            tag: item.nhomNghe?.tenNhomNghe || item.NhomNghe?.TenNhomNghe || 'Gốm sứ',
+            img: item.anhBia || item.AnhBia || 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=400&auto=format&fit=crop',
+            lat: item.viDo || item.ViDo,
+            lng: item.kinhDo || item.KinhDo
+          })));
+        }
+      } catch (err) {
+        console.warn('Sử dụng dữ liệu làng nghề mẫu do lỗi API:', err);
+      }
+
+      try {
+        const pList = await getDanhSachSanPham();
+        if (pList && pList.length > 0) {
+          setProducts(pList.map(item => ({
+            id: item.maSanPham || item.MaSanPham,
+            name: item.tenSanPham || item.TenSanPham,
+            village: item.langNghe?.tenLangNghe || 'Làng nghề Việt Nam',
+            price: item.giaBan || item.GiaBan ? Number(item.giaBan || item.GiaBan).toLocaleString('vi-VN') + 'đ' : '450.000đ',
+            category: item.langNghe?.nhomNghe?.tenNhomNghe || 'Gốm sứ',
+            img: item.anhDaiDien || item.AnhDaiDien || 'https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?q=80&w=400&auto=format&fit=crop',
+            rating: '4.9 (Đánh giá từ SQL Server)',
+            desc: item.moTa || item.MoTa
+          })));
+        }
+      } catch (err) {
+        console.warn('Sử dụng dữ liệu sản phẩm mẫu do lỗi API:', err);
+      }
+    };
+
+    fetchHomeData();
+  }, []);
 
   const handleCartClick = (e, product) => {
     e.stopPropagation();

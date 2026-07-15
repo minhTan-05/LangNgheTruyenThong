@@ -27,7 +27,7 @@ export default function GioHang({ setActiveTab }) {
         <div style={{ textAlign: 'center', padding: '3rem', background: 'white', borderRadius: '12px' }}>
           <ShoppingBag size={48} color="#94a3b8" style={{ margin: '0 auto 1rem' }} />
           <h3>Giỏ hàng đang trống</h3>
-          <p color="#64748b">Hãy khám phá các sản phẩm độc đáo từ làng nghề Việt Nam nhé!</p>
+          <p style={{ color: '#64748b' }}>Hãy khám phá các sản phẩm độc đáo từ làng nghề Việt Nam nhé!</p>
           <button 
             onClick={() => setActiveTab('products')}
             style={{ marginTop: '1rem', padding: '0.75rem 1.5rem', background: '#d97706', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold' }}

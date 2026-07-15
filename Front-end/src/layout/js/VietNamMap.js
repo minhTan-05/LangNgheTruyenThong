@@ -77,8 +77,11 @@ export default function VietnamMap({ onSelectVillage, setActiveTab }) {
             lat: Number(item.viDo || item.ViDo),
             lng: Number(item.kinhDo || item.KinhDo),
             product: item.nhomNghe?.tenNhomNghe || item.NhomNghe?.TenNhomNghe || 'Nghề truyền thống',
+            tag: item.nhomNghe?.tenNhomNghe || item.NhomNghe?.TenNhomNghe || 'Nghề truyền thống',
             location: item.tinhThanh || item.TinhThanh || 'Việt Nam',
             rating: Number(item.diemDanhGia || item.DiemDanhGia || 5).toFixed(1),
+            views: item.luotXem || item.LuotXem || '1,250',
+            desc: item.gioiThieu || item.GioiThieu || item.lSTruyenThong || item.LSTruyenThong || 'Làng nghề truyền thống nổi tiếng với lịch sử lâu đời, lưu giữ những giá trị văn hóa nghệ thuật đặc sắc.',
             img: item.anhBia || item.AnhBia || 'https://images.unsplash.com/photo-1610701596007-11502861dcfa?q=80&w=200&auto=format&fit=crop'
           }));
           setVillages(mappedData);
