@@ -17,6 +17,8 @@ namespace AptWatchApi.Data
         public DbSet<NguoiDung> NguoiDung { get; set; }
         public DbSet<DonHang> DonHang { get; set; }
         public DbSet<ChiTietDonHang> ChiTietDonHang { get; set; }
+        public DbSet<HinhAnhLangNghe> HinhAnhLangNghe { get; set; }
+        public DbSet<VideoLangNghe> VideoLangNghe { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -69,6 +71,18 @@ namespace AptWatchApi.Data
                 .HasOne(c => c.DonHang)
                 .WithMany(d => d.DanhSachChiTiet)
                 .HasForeignKey(c => c.MaDonHang)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<HinhAnhLangNghe>()
+                .HasOne(h => h.LangNghe)
+                .WithMany()
+                .HasForeignKey(h => h.MaLangNghe)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<VideoLangNghe>()
+                .HasOne(v => v.LangNghe)
+                .WithMany()
+                .HasForeignKey(v => v.MaLangNghe)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

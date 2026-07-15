@@ -53,12 +53,6 @@ export default function ChiTietLangNghe({ village, setActiveTab, onSelectProduct
         >
           <ArrowLeft size={16} /> Quay lại Bản đồ làng nghề
         </span>
-        <button
-          onClick={() => setActiveTab && setActiveTab('village-portal')}
-          style={{ background: '#b45309', color: 'white', border: 'none', padding: '8px 16px', borderRadius: '20px', fontWeight: 600, cursor: 'pointer', fontSize: '0.85rem' }}
-        >
-          Quản trị Làng nghề này
-        </button>
       </div>
 
       {/* --- HERO BANNER --- */}

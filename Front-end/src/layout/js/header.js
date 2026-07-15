@@ -1,6 +1,6 @@
 import React from 'react';
 import '../css/header.css';
-import { Map as MapIcon, ShoppingCart, LogIn, UserPlus, Shield } from 'lucide-react';
+import { Map as MapIcon, ShoppingCart, LogIn, UserPlus } from 'lucide-react';
 
 export default function Header({ activeTab, setActiveTab, cartCount = 2 }) {
   return (
@@ -38,13 +38,6 @@ export default function Header({ activeTab, setActiveTab, cartCount = 2 }) {
           <ShoppingCart size={22} />
           <span className="cart-badge">{cartCount}</span>
         </div>
-        <button 
-          onClick={() => setActiveTab('admin-portal')} 
-          style={{ background: '#374151', color: '#f3f4f6', border: '1px solid #4b5563', padding: '6px 12px', borderRadius: '18px', fontWeight: 600, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: '6px', fontSize: '0.8rem' }}
-          title="Truy cập hệ thống quản trị"
-        >
-          <Shield size={14} color="#cda846" /> Admin
-        </button>
         <button className="btn-login" onClick={() => setActiveTab('login')}>
           <LogIn size={16} /> Đăng nhập
         </button>
